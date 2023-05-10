@@ -3,6 +3,9 @@ body{
     background-image: url("Images/back.png");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
 }
 
 h1{
