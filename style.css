@@ -1,0 +1,102 @@
+body{
+    background-attachment: fixed;
+    background-image: url("Images/back.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1{
+    color:rgb(255, 255, 79); 
+    font-size: 60px; 
+    text-align: center;
+}
+
+h2{
+    color:brown; 
+    font-size: 40px; 
+    text-align: center;
+}
+
+table, th, td{
+    width: 100%;
+    border: 1px solid black;
+    table-layout: fixed;
+}
+
+.login-box{
+    margin: auto;
+    align-items: center;
+    background-color:yellow;
+    border-color: black;
+    height: 180px;
+    width: 300px;
+    cursor: hand;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 20px;
+    padding: 20px 0;
+}
+
+.label-username{
+    color: rgb(255, 255, 79); 
+    align-items: center;
+    font-weight: bold;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.label-password{
+    color: rgb(255, 255, 79); 
+    font-weight: bold;
+    align-items: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+input[name="username"]{
+    margin: auto;
+    display: flex;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-color: black;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+input[name="password"]{
+    margin: auto;
+    display: flex;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-color: black;
+    align-items: center;
+    cursor: hand;
+    opacity: 0.5;
+}
+
+.login-enter-button{
+    align-items: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.login-enter-button:hover{
+    background-color: rgb(255, 255, 79);
+}
+
+.username-required{
+    color: red;
+}
+
+.password-required{
+    color: red;
+}
