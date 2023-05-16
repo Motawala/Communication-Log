@@ -5,6 +5,35 @@ function redirect_to_main(){
 }
 var username;
 
+document.addEventListener('DOMContentLoaded', ()=>{
+    const passwordInput = document.getElementById("password");
+    const loginInput = document.getElementById("login-button");
+    var username = document.getElementById("username").value;
+
+    passwordInput.addEventListener('keyup', (event) => {
+        if(event.key == "Enter" && username == ""){
+            event.preventDefault();
+            loginInput.click();
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () =>{
+    const usernameInput = document.getElementById("username");
+    const loginInput = document.getElementById("login-button");
+    var password = document.getElementById("password").value;
+    var usernameVal = document.getElementById("username").value;
+
+    usernameInput.addEventListener('keydown', event => {
+        if(event.key == "Enter" && password == ""){
+            event.preventDefault();
+            loginInput.click();
+        }
+    });
+});
+
+
+
 function login(){
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
