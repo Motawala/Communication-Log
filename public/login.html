@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Employees Communication Log</title>
+    <link rel="icon" type="image/x-icon" href="/Images/Logo.png" class="back-logo"> 
+    <script src="/js/login.js"></script>
+    <script src="/js/app.js"></script>
+    <link rel = "stylesheet" href = "/css/login_style.css">
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+</head>
+<body>
+    <div class="login-box">
+        <img src="/Images/login_logo.png" class="login-logo">
+        <h1>Login Here</h1>
+        <div class="login-form" id="login">
+            <div class="login-error">
+                <p id="login-error-message"></p>
+            </div>
+            <div class="input-form">
+                <input type="username" id="username" class="username" name="username" placeholder="Username or Email..">
+            </div>
+            <div class="login-input-form">
+                <input type="password" id="password" class="password" name="password" placeholder="Password..">
+            </div>
+            <div class="login-button-link">
+                <a>
+                <input value="login" onclick="login();store_username()" type="submit">
+                </a>
+            </div>
+            <div class="Forgot-password-form">
+                <a id="Forgot-password" href="#">Forgot Password?</a><br>
+            </div>
+            <div class="CreateNewAccount">
+                <a id="CreatesNewAccount" href="createAccount.html">Create a New Account?</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

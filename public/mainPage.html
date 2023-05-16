@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<title>Employees Communication Log</title>
+<link rel="icon" type="image/x-icon" href="/Images/Logo.png" class="back-logo">
+<script src="/js/login.js"></script>
+<link rel = "stylesheet" href = "/css/main_style.css">
+</head>
+<body onload="welcomeMessage()">
+    <div class="container">
+        <div class="logout">
+            <a href="login.html"><img src="/Images/logout.png" class="logout-logo"></a>
+        </div>
+        <div class="welcome-title">
+            <p id="welcome-message"></p><br>
+            <div class="maintain-box">
+                <div class="logo">
+                    <img src="/Images/maintain.png" class="maintain-logo" href="maintain.html">
+                </div>
+                <a class="red-box-input" id="red-box" type="submit" href="maintain.html">Maintenance information</a>
+            </div>
+            <div class="guest-communication">
+                <div class="logo">
+                    <img src="/Images/guest.png" class="guest-logo" href="guest.html">
+                </div>
+                <a class="green-box-input" id="green-box" type="submit" href="guest.html">Guest Communication</a>
+            </div>
+            <div class="housekeep-info">
+                <div class="logo">
+                    <img src="/Images/housekeeping.png" class="housekeeping-logo" href="housekeep.html">
+                </div>
+                <a class="orange-box-input" id="orange-box" type="submit" href="housekeep.html">Housekeeping Communication</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

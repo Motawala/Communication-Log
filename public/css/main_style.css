@@ -1,0 +1,165 @@
+body{
+    background-color: lightblue;
+}
+
+.container{
+    width: 520px;
+    height: 530px;
+    top:50%;
+    left:50%;
+    position:absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    background-color: black;
+    box-shadow: 5px 5px 10px #80e4e4;
+    padding: 70px 30px;
+    opacity: 0.8;
+    border-radius: 10px;
+    justify-content: center;
+    border-color: lightblue;
+    box-shadow:blue;
+}
+
+.welcome-title{
+    margin: auto;
+    width: 380px;
+    border-radius: 10px;
+    height:75px;
+    text-align: center;
+    box-sizing: border-box ;
+    justify-content: center;
+    display:block;
+    background-color: black ;
+}
+
+.welcome-title p{
+    color:rgb(247, 233, 42);
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: fit-content;
+    margin:0;
+}
+
+.maintain-box{
+    margin: auto;
+    border-color: rgb(250, 2, 2);
+    box-shadow: inset;
+    width:90%;
+    border: 5px solid rgb(252, 1, 1);
+    border-radius: 10px;
+    height:90px;
+    text-align: center;
+    box-sizing: border-box ;
+    justify-content: center;
+    display:block;
+    margin-top: 30px;
+    background-color: white;
+}
+
+.maintain-box:hover{
+    color:rgb(243, 156, 156);
+}
+
+.maintain-box a{
+    text-align: center;
+    margin:auto;
+    justify-content: center;
+    font-size: 22px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(250, 2, 2);
+    padding:10px;
+}
+
+.guest-communication{
+    margin: auto;
+    box-shadow: inset;
+    width:90%;
+    border: 5px solid rgb(62, 165, 2);
+    border-radius: 10px;
+    height:90px;
+    text-align: center;
+    box-sizing: border-box ;
+    justify-content: center;
+    display:block;
+    margin-top: 30px;
+    background-color: white;
+}
+
+.guest-communication:hover{
+    color:lightgreen;
+}
+
+.green-box-input{
+    text-align: center;
+    margin:auto;
+    justify-content: center;
+    font-size: 22px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(62, 165, 2);
+    padding:10px;
+}
+
+.housekeep-info{
+    margin: auto;
+    box-shadow: inset;
+    width:90%;
+    border: 5px solid orange;
+    border-radius: 10px;
+    height:90px;
+    text-align: center;
+    box-sizing: border-box ;
+    justify-content: center;
+    display:block;
+    margin-top: 30px;
+    background-color: white;
+}
+
+.orange-box-input{
+    text-align: center;
+    margin:0;
+    height: fit-content;
+    font-size: 22px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: orange;
+    padding:10px;
+}
+
+
+.maintain-logo{
+    width: 35px;
+    height:35px;
+   cursor: pointer;
+}
+
+.guest-logo{
+    width:35px;
+    height:35px;
+    cursor: pointer;
+}
+
+.housekeeping-logo{
+    width:35px;
+    height:35px;
+    cursor: pointer;
+}
+
+.logo{
+    width: 60px;
+    height:40px;
+    position:relative;
+}
+.logout-logo{
+    background-color: white;
+    width: 40px;
+    height:40px;
+    left:100px;
+    bottom: 100px;
+    top:-100px;
+}
+
+.logout{/*in the top left corner*/
+    left:16px;
+    top: 8px;
+    position:absolute;
+}

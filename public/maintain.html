@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<title>Employees Communication Log</title>
+<link rel="icon" type="image/x-icon" href="/Images/Logo.png" class="back-logo">
+<script src="login.js"></script>
+<link rel="stylesheet" href = "/css/maintain.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="main-dashboard">
+        <img src="/Images/maintain.png" class="maintain-logo">
+    </div>
+    <div class="home">
+        <a href="mainPage.html" class="home-link"><i class="fa fa-home fa-3x" type="submit"></i></a>
+    </div>
+    <div class="notepad-box">
+        <div class="note-display">
+            <p id="message-sent"></p>
+        </div>
+        <div class="notepad-input">
+            <input id="note-input" type="text" placeholder="Enter the information..." name="notes" onclick="send()">
+            <div class="send-icon">
+                <button onclick="write() "class="fa fa-send fa-2x" type="submit">
+            </div>
+        </div>
+    </div>
+</body>
