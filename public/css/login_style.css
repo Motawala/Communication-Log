@@ -78,9 +78,18 @@ h1{
     border-radius: 8px;
 }
 
-.input-form:focus{
-    color:rgb(136, 211, 255);
+input[type="username"]:required:invalid{
+    border-color: black;
 }
+
+input[type="password"]:required:invalid{
+    border-color: black;
+}
+.username-input-form:focus{
+    color:white;
+}
+
+
 
 .login-box input[type="submit"]{
     border: none;
@@ -133,7 +142,7 @@ h1{
 }
 
 .login-error p{
-    color: white;
+    color: rgb(252, 1, 1);
 }
 .option-link{
     align-items: center;
