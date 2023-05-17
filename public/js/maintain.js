@@ -1,4 +1,6 @@
 
+
+
 //Onclick event for the send button to send the user's input to display
 const sendButton = document.getElementById("send-button");
 if(sendButton){
