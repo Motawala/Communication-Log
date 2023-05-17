@@ -17,12 +17,12 @@
     </div>
     <div class="notepad-box">
         <div class="note-display">
-            <p id="message-sent"></p>
+            <p id="message-received"></p>
         </div>
         <div class="notepad-input">
-            <input id="note-input" type="text" placeholder="Enter the information..." name="notes" onclick="send()">
+            <input id="note-input" type="text" placeholder="Enter the information..." name="notes">
             <div class="send-icon">
-                <button onclick="write() "class="fa fa-send fa-2x" type="submit">
+                <button onclick="send()" id="send-button" class="fa fa-send fa-2x" type="submit"></button>
             </div>
         </div>
     </div>

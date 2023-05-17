@@ -17,6 +17,18 @@ body{
     border-radius: 10px;
 }
 
+.note-display > body{
+    width: 500px;
+    height: 220px;
+    top:40%;
+    left:47.5%;
+    position:absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    background-color: black;
+    box-shadow: 5px 5px 10px #80e4e4;
+    border-radius: 10px;
+}
 .note-display{
     width: 1000px;
     height: 440px;
@@ -84,7 +96,8 @@ body{
 
 .send-icon{
     border:none;
-    background: transparent;
+    background: none;
+    outline: none;
 }
 
 .note-display p{
