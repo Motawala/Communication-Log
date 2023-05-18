@@ -49,3 +49,14 @@ async function run() {
   }
 }
 run().catch(console.dir);
+
+
+async function read(){
+  var collection = client.db("test").collection("communicationLogs").find({});
+  const result = await collection.toArray();
+  console.log(result);
+}
+
+read();
+
+
