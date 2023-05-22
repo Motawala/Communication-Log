@@ -39,10 +39,11 @@ if(loginButton){
 
 
 // Call the function for login to the mainPage
-function login(){
+async function login(){
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
    
+    console.log(password);
     if (username == "kp" && password == "kp"){
         redirect_to_main();
         
@@ -55,7 +56,7 @@ function login(){
 //Loads the Welcome message onload.
 const body = document.getElementById("bd");
 if(body){
-    window.document.addEventListener('DOMContentLoaded', () =>{
+    window.document.addEventListener('load', () =>{
         welcomeMessage();
 
     });

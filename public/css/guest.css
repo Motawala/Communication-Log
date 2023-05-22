@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(250, 2, 2);
+    background-color: green;
 }
 
 .notepad-box{
@@ -55,7 +55,7 @@ body{
     border-radius: 10px;
     font-size: 25px;
     font-family: 'Times New Roman', Times, serif;
-    color: rgb(253, 95, 95);
+    color: green;
     border-color: rgb(0, 0, 0);
 }
 
@@ -65,10 +65,10 @@ body{
     margin-left:1030px;
 }
 
-.maintain-logo{
+.housekeep-logo{
     position:absolute;
     top:8px;
-    left:8px;
+    left:5px;
     width:65px;
     height:65px;
     border-radius:2px;

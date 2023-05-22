@@ -1,0 +1,115 @@
+body{
+    background-attachment: fixed;
+    background-image: url("/Images/login_back.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-body{
+    width: 320px;
+    height: 370px;
+    top:50%;
+    left:50%;
+    position:absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    background-color: black;
+    box-shadow: 5px 5px 10px #80e4e4;
+    padding: 70px 30px;
+    opacity: 0.8;
+    border-radius: 10px;
+    color:white;
+}
+
+.main-body h1{
+    margin-top:-40px;
+    font-size: 15px;
+    color: rgb(241, 241, 112);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: center;
+}
+
+.property-id{
+    border: none;
+    display: flex;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height:40px;
+    align-items: left;
+    width:100%;
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom:10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.old-password{
+    border: none;
+    display: flex;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height:40px;
+    align-items: left;
+    width:100%;
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom:10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.new-password{
+    border: none;
+    display: flex;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height:40px;
+    align-items: left;
+    width:100%;
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom:10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.repeat-new-password{
+    border: none;
+    display: flex;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height:40px;
+    align-items: left;
+    width:100%;
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom:10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.reset-button{
+    margin-top:20px;
+    align-items: center;
+}
+
+.reset-button input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: rgb(136, 211, 255);
+    font-size: 18px;
+    border-radius: 20px;
+    width: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.reset-button input[type="submit"]:hover{
+    background-color: white;
+    cursor: pointer;
+}

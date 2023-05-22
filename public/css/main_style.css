@@ -53,12 +53,12 @@ body{
     box-sizing: border-box ;
     justify-content: center;
     display:block;
-    margin-top: 30px;
+    margin-top: 0;
     background-color: white;
 }
 
 .maintain-box:hover{
-    color:rgb(243, 156, 156);
+    background-color: rgb(153, 152, 152);
 }
 
 .maintain-box a{
@@ -87,7 +87,7 @@ body{
 }
 
 .guest-communication:hover{
-    color:lightgreen;
+    background-color: rgb(153, 152, 152);
 }
 
 .green-box-input{
@@ -113,6 +113,10 @@ body{
     display:block;
     margin-top: 30px;
     background-color: white;
+}
+
+.housekeep-info:hover{
+    background-color: rgb(153, 152, 152);
 }
 
 .orange-box-input{
@@ -162,4 +166,43 @@ body{
     left:16px;
     top: 8px;
     position:absolute;
+}
+
+.inventory-logo{
+    width:80%;
+    height: 100%;
+    background:transparent;
+}
+
+.inventory{
+    margin: auto;
+    box-shadow: inset;
+    width:90%;
+    border: 5px solid blue;
+    border-radius: 10px;
+    height:90px;
+    text-align: center;
+    box-sizing: border-box ;
+    justify-content: center;
+    display:block;
+    margin-top: 30px;
+    background-color: white;
+}
+
+.inventory:hover{
+    background-color: rgb(153, 152, 152);
+}
+
+.blue-box-input{
+    text-align: center;
+    margin:0;
+    height: fit-content;
+    font-size: 22px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: blue;
+    padding:10px;
+}
+
+.inventory-logo:hover{
+    background-color: rgb(153, 152, 152);
 }

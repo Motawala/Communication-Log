@@ -1,5 +1,13 @@
 
 
+const body = document.getElementById("bd");
+if(body){
+    window.document.addEventListener('load', () =>{
+        create();
+    });
+}
+
+
 //Onclick event for the send button to send the user's input to display
 const sendButton = document.getElementById("send-button");
 if(sendButton){
@@ -25,7 +33,6 @@ if(noteInput){
 function send(){
     var messageSent = document.getElementById("note-input").value;
     document.getElementById("message-received").innerHTML = messageSent;
-    document.getElementById("note-input").value='';
 }
 
 
