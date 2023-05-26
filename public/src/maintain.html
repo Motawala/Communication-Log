@@ -5,20 +5,22 @@
 <link rel="icon" type="image/x-icon" href="/Images/Logo.png" class="back-logo">
 <script type="module" src="/js/login.js"></script>
 <script type="module" src="/js/maintain.js"></script>
-<link rel="stylesheet" href = "/css/housekeep.css">
+<link rel="stylesheet" href = "/css/maintain.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body id="bd">
+  
     <div class="main-dashboard">
-        <img src="/Images/housekeeping2.png" class="housekeep-logo">
+        <img src="/Images/maintain.png" class="maintain-logo">
     </div>
     <div class="home">
-        <a href="/mainPage.html" class="home-link"><i class="fa fa-home fa-3x" type="submit"></i></a>
+        <a href="/src/mainPage.html" class="home-link"><i class="fa fa-home fa-3x" type="submit"></i></a>
     </div>
     <div class="notepad-box">
-        <div class="note-display">
-        </div>
+        <form class="note-display">
+            <textarea id="mytextarea" class="tex">Hello, World!</textarea>
+        </form>
         <div class="notepad-input">
             <input id="note-input" type="text" placeholder="Enter the information..." name="notes">
             <div class="send-icon">

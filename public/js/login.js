@@ -39,18 +39,6 @@ if(loginButton){
 
 
 // Call the function for login to the mainPage
-async function login(){
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-   
-    console.log(password);
-    if (username == "kp" && password == "kp"){
-        redirect_to_main();
-        
-    }else{
-        document.getElementById("login-error-message").innerHTML = "Incorrect Username or Password."
-    }
-}
 
 
 //Loads the Welcome message onload.
@@ -70,8 +58,29 @@ function welcomeMessage(){
 }
 
 
+async function login(){
+    const email = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
+    try {
+        // Make an HTTP POST request to the login endpoint
+        const response = await fetch("http://localhost:3000/api/login",{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password }),
+        });
 
+        const result = await response.json();
 
-
-
+        if (response.ok) {
+            console.log("Login Successful")
+            redirect_to_main();
+        }else{
+            console.log("Incorrect Password")
+        }
+    }catch(error){
+        console.error("Error occured during login", error)
+    }
+}

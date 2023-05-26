@@ -1,4 +1,6 @@
-
+tinymce.init({
+    selector: '#mytextarea'
+  });
 
 const body = document.getElementById("bd");
 if(body){

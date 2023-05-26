@@ -1,12 +1,16 @@
 {
   "dependencies": {
     "@auth0/auth0-spa-js": "^2.0.4",
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
     "express-oauth2-jwt-bearer": "^1.4.1",
     "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
     "mongodb": "5.5",
-    "mongoose": "^7.1.1",
+    "mongoose": "^7.2.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0",
@@ -25,5 +29,13 @@
   "author": "",
   "license": "ISC",
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Motawala/Summer-2023-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Motawala/Summer-2023-Project/issues"
+  },
+  "homepage": "https://github.com/Motawala/Summer-2023-Project#readme",
   "description": ""
 }
