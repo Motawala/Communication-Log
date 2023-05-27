@@ -7,7 +7,7 @@ body{
 
 .main-body{
     width: 320px;
-    height: 400px;
+    height: 450px;
     top:50%;
     left:50%;
     position:absolute;
@@ -28,6 +28,14 @@ body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     align-items: center;
 }
+
+.main-body p{
+    font-size: 15px;
+    color: rgb(241, 241, 112);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: center;
+}
+
 
 .firstname-input{
     border: none;

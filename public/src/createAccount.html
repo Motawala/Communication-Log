@@ -2,12 +2,13 @@
 <html lang = "en">
 <head>
     <title>Employees Communication Log</title>
+    <link rel="icon" type="image/x-icon" href="/Images/Logo.png" class="back-logo">
     <link rel="icon" type="icon" href="Images/Logo.png"> 
-    <script src="login.js"></script>
+    <script type="module" src="/js/signup.js"></script>
     <link rel = "stylesheet" href = "/css/createAccount.css">
 </head>
 <body>
-    <form class="main-body">
+    <div id="main-div" class="main-body">
         <h1>Create A New Account</h1>
         <div class="firstname">
             <input id="firstname-input" placeholder="Firstname*" class="firstname-input" required>
@@ -27,5 +28,6 @@
         <div class="create-button">
             <input type="submit" id="create-input" value="Create">
         </div>
+        <p id="signup-message"></p>
     </div>
 </body>

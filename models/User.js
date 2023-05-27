@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+
+//Creates a userSchema for the Database
 const userSchema = new mongoose.Schema({
     firstname:{
         type: String,
@@ -12,6 +14,12 @@ const userSchema = new mongoose.Schema({
         required: true,
         maxlength: 32,
         trim: true
+    },
+    username:{
+        type:String,
+        required:false,
+        trim:true,
+        maxlength:32
     },
     email:{
         type:String,
@@ -27,27 +35,6 @@ const userSchema = new mongoose.Schema({
 })
 
 
-const usr = mongoose.model('user', userSchema)
-
-
-const newUser = new usr({
-    firstname: 'Paul',
-    lastname: "Patel",
-    email: "paul1100@gmail.com",
-    password: "PP299"
-})
-
-newUser.save()
-  .then(() => {
-    console.log('User saved successfully');
-    mongoose.disconnect();
-  })
-  .catch((error) => {
-    console.error('Error saving user:', error);
-    mongoose.disconnect();
-  });
-
-
-
+//Exports the model
 module.exports = mongoose.model('user', userSchema);
 

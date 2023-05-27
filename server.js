@@ -28,10 +28,12 @@ app.listen(3000, () => console.log("Application running on port 3000"));
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//Import MongoClient and URI
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://karanp45:Kp2992002@project.viinysi.mongodb.net/user";
 
 
+//Connect to Mongoose
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -47,16 +49,17 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//Import the Routes
 const userRoutes = require('./routes/User');
 const { connect } = require("http2");
 
+//Use the Routes
 app.use('/api', userRoutes)
 
 
-const URI = "mongodb+srv://karanp45:Kp2992002@project.viinysi.mongodb.net/";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(URI, {
+const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -64,6 +67,7 @@ const client = new MongoClient(URI, {
   }
 });
 
+//Attempt to connect to the mongoDB Client
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
