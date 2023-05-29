@@ -109,14 +109,6 @@ const login = async (req, res) =>{
         }
 
         
-        
-
-
-
-        //If the password matches authenticate the user.
-        
-
-        
     }
     catch(error){
         console.error(error);
@@ -127,7 +119,37 @@ const login = async (req, res) =>{
     }
 }
 
+//Reset Users Password
+const reset = async (req, res) =>{
+    const {email, username, password} = req.body;
+
+    const user = await User.findOne({email})
+
+    try{
+        hashedPassword = await bcrypt.hash(password, 10);
+        if(user.email == email && user.username == username){
+            user.password = hashedPassword;
+            user.save()
+            return res.status(200).json({
+                success: true,
+                message: "Email and Username exists and Password is Updated"
+            })
+        }else{
+            return res.status(400).json({
+                success: false,
+                message: username
+            })
+        }
+    }catch(error){
+        return res.status(400).json({
+            success: false,
+            message: "Failed to reset the password"
+        })
+    }
+
+}
+
 
 
 //Export the login module for the API
-module.exports = {login, signUp};
+module.exports = {login, signUp, reset};

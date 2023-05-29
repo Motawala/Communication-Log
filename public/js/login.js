@@ -1,5 +1,4 @@
 
-
 //Function to redirect the user to the main Page.
 function redirect_to_main(){
     window.location.href = '/src/mainPage.html';
@@ -10,13 +9,14 @@ function redirect_to_main(){
 //Enter key event listner for password input
 const passwordInput = document.getElementById("password");
 if(passwordInput){
-    passwordInput?.addEventListener('keypress', (event) => {
+    passwordInput.addEventListener('keypress', (event) => {
         if(event.key == "Enter"){
             event.preventDefault();
             login();
         }
     });
 }
+
 
 
 
@@ -101,4 +101,89 @@ async function login(){
     }catch(error){
         console.error("Error occured during login", error)
     }
+}
+
+
+const resetButton = document.getElementById("reset-button");
+if(resetButton){
+    resetButton.addEventListener('click', resetPassword);
+}
+
+const RepeatPasswordInput = document.getElementById("repeat-new-password");
+if(RepeatPasswordInput){
+    RepeatPasswordInput.addEventListener('keypress', (event) => {
+        if(event.key == "Enter"){
+            event.preventDefault();
+            resetPassword();
+        }
+    });
+}
+
+//Resets the password for the user
+async function resetPassword(){
+
+    const username = document.getElementById("username-forgot").value;
+    const email = document.getElementById("email-forgot").value;
+    const password = document.getElementById("new-password").value;
+    const repeatPassword = document.getElementById("repeat-new-password").value;
+
+   
+    try{
+        if(password == repeatPassword){
+            const response = await fetch("http://localhost:3000/api/resetPassword",{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({email,username,password})
+            })
+
+            if(response.ok){
+                console.log("Password Update Successful");
+                display();
+                return res.status(200).json({
+                    success: true,
+                    message: "Password Updated"
+                })
+            }else{
+                console.log('Password reset unsuccessful');
+                displayEmailError();
+            }
+        }else{
+            const error_message = document.getElementById("forgot-message");
+                error_message.style.display='block';
+                error_message.innerHTML = "Password does not match"
+                setTimeout(function() {
+                    // Redirect to the desired page
+                    error_message.style.display='none';
+                    error_message.style.color = "red";
+                },1000);
+                
+                console.log("Password does not match")
+        }
+    }catch(error){
+
+    }
+}
+
+async function display(){
+    const forgotMessage = document.getElementById('forgot-message')
+    forgotMessage.style.color = 'rgb(241, 241, 112)'
+    forgotMessage.innerHTML = "Password Updated"
+    setTimeout(function() {
+    // Redirect to the desired page
+    window.location.href = '/src/login.html'; // Replace with your desired URL
+    },800);
+}
+
+async function displayEmailError(){
+    const error_message = document.getElementById("forgot-message");
+    error_message.style.display='block';
+    
+    setTimeout(function() {
+    // Redirect to the desired page
+        error_message.innerHTML = "Invalid Email/Username"
+        error_message.style.display='none';
+        error_message.style.color = "red";
+    },1200);
 }

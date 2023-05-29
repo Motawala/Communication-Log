@@ -7,7 +7,7 @@ body{
 
 .main-body{
     width: 320px;
-    height: 370px;
+    height: 390px;
     top:50%;
     left:50%;
     position:absolute;
@@ -23,6 +23,13 @@ body{
 
 .main-body h1{
     margin-top:-40px;
+    font-size: 15px;
+    color: rgb(241, 241, 112);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: center;
+}
+
+.main-body p{
     font-size: 15px;
     color: rgb(241, 241, 112);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
