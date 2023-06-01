@@ -11,6 +11,28 @@ const router = express.Router();
 const indexRoutes = require('./routes/')
 const consolidate = require('consolidate')
 const session = require('express-session')
+const mongoDBsession = require('connect-mongodb-session')(session);
+//Import MongoClient and URI
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://karanp45:Kp2992002@project.viinysi.mongodb.net/user";
+
+
+//Store the session key in mongodb
+const store = new mongoDBsession({
+  uri: uri,
+  collection: "Session"
+})
+
+
+//Create Sessions 
+app.use(session({
+  secret: "Motawala",
+  resave: false,
+  saveUninitialized: false,
+  store: store,
+}))
+
+//Create a monogdb session to save our login sessions
 
 
 // Serve static assets from the /public folder
@@ -22,7 +44,7 @@ app.get("/auth_config.json", (req, res) => {
 });
 
 // Serve the index page for all other requests
-app.get("/home", (_, res) => {
+app.get("/home", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
@@ -37,9 +59,6 @@ app.listen(3000, () => console.log("Application running on port 3000"));
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Import MongoClient and URI
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://karanp45:Kp2992002@project.viinysi.mongodb.net/user";
 
 
 //Connect to Mongoose
@@ -91,4 +110,4 @@ async function run() {
 run().catch(console.dir);
 
 
-
+module.exports = session;

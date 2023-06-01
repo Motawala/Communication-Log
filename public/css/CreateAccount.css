@@ -7,7 +7,7 @@ body{
 
 .main-body{
     width: 320px;
-    height: 450px;
+    height: 490px;
     top:50%;
     left:50%;
     position:absolute;
@@ -141,17 +141,32 @@ body{
     cursor: pointer;
 }
 
-.eye-button{
+.eye-button-create{
     display: flex;
     position: absolute;
-    top: 57%;
-    right:20px;
+    top: 60%;
+    right:28px;
     transform: translateY(-50%);
     color: #616161;
     height:20px;
     width:25px;
 }
 
-.eye-button:hover{
+.eye-button-create:hover{
+    cursor:pointer;
+}
+
+.repeat-eye-button-create{
+    display: flex;
+    position: absolute;
+    top: 71%;
+    right:28px;
+    transform: translateY(-50%);
+    color: #616161;
+    height:20px;
+    width:25px;
+}
+
+.repeat-eye-button-create:hover{
     cursor:pointer;
 }

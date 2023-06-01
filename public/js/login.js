@@ -239,19 +239,20 @@ if(eyeButtonOne){
 
 async function showNewPassword(){
     let newPassword = document.getElementById('new-password');
-    if(newPassword.type == "password"){
-        eyeButtonOne.src = "/Images/eye-open.png"
-        eyeButtonOne.style.color = "white"
-        eyeButtonOne.style.height = "20px"
-        eyeButtonOne.style.width = "25px"
-        newPassword.type = "text"
-    }else{
-        eyeButtonOne.src = "/Images/eye-close.png"
-        eyeButtonOne.style.height = "20px"
-        eyeButtonOne.style.width = "25px"
-        newPassword.type = "password"
+    if(newPassword.value != undefined){
+        if(newPassword.type == "password"){
+            eyeButtonOne.src = "/Images/eye-open.png"
+            eyeButtonOne.style.color = "white"
+            eyeButtonOne.style.height = "20px"
+            eyeButtonOne.style.width = "25px"
+            newPassword.type = "text"
+        }else{
+            eyeButtonOne.src = "/Images/eye-close.png"
+            eyeButtonOne.style.height = "20px"
+            eyeButtonOne.style.width = "25px"
+            newPassword.type = "password"
+        }
     }
-
 }
 
 
@@ -263,17 +264,20 @@ if(eyeButtonTwo){
 
 async function showRepeatPassword(){
     let newPassword = document.getElementById('repeat-new-password');
-    if(newPassword.type == "password"){
-        eyeButtonTwo.src = "/Images/eye-open.png"
-        eyeButtonTwo.style.color = "white"
-        eyeButtonTwo.style.height = "20px"
-        eyeButtonTwo.style.width = "25px"
-        newPassword.type = "text"
-    }else{
-        eyeButtonTwo.src = "/Images/eye-close.png"
-        eyeButtonTwo.style.height = "20px"
-        eyeButtonTwo.style.width = "25px"
-        newPassword.type = "password"
+    if(newPassword.value != null){
+        if(newPassword.type == "password"){
+            eyeButtonTwo.src = "/Images/eye-open.png"
+            eyeButtonTwo.style.color = "white"
+            eyeButtonTwo.style.height = "20px"
+            eyeButtonTwo.style.width = "25px"
+            newPassword.type = "text"
+        }else{
+            eyeButtonTwo.src = "/Images/eye-close.png"
+            eyeButtonTwo.style.height = "20px"
+            eyeButtonTwo.style.width = "25px"
+            newPassword.type = "password"
+        }
     }
 
 }
+
