@@ -140,3 +140,18 @@ body{
     background-color: white;
     cursor: pointer;
 }
+
+.eye-button{
+    display: flex;
+    position: absolute;
+    top: 57%;
+    right:20px;
+    transform: translateY(-50%);
+    color: #616161;
+    height:20px;
+    width:25px;
+}
+
+.eye-button:hover{
+    cursor:pointer;
+}

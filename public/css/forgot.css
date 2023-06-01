@@ -120,3 +120,34 @@ body{
     background-color: white;
     cursor: pointer;
 }
+
+.eye-button-one{
+    display: flex;
+    position: absolute;
+    right:28px;
+    transform: translateY(-50%);
+    color: #616161;
+    height:20px;
+    width:25px;
+    top:48%;
+}
+
+.eye-button-one:hover{
+    cursor:pointer;
+}
+
+.eye-button-two{
+    display: flex;
+    position: absolute;
+    right:28px;
+    transform: translateY(-50%);
+    color: #616161;
+    height:20px;
+    width:25px;
+    top:62%;
+}
+
+
+.eye-button-two:hover{
+    cursor:pointer;
+}

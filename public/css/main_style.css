@@ -154,12 +154,13 @@ body{
     position:relative;
 }
 .logout-logo{
-    background-color: white;
+    color:white;
     width: 40px;
     height:40px;
     left:100px;
     bottom: 100px;
     top:-100px;
+    border-radius: 5px;
 }
 
 .logout{/*in the top left corner*/

@@ -30,7 +30,7 @@ async function createAccount(){
 
     try {
         // Make an HTTP POST request to the login endpoint
-        const response = await fetch("http://localhost:3000/user/signup",{
+        const response = await fetch("/user/signup",{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json',
@@ -41,10 +41,7 @@ async function createAccount(){
         if(response.ok){
             console.log('success')
             displayMessage();
-            return res.status(200).json({
-                success:true,
-                message:"User created Successfully"
-            })
+           
         }else{
             const error_message = document.getElementById("signup-message");
             error_message.style.color='red'

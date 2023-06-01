@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router();
-const {login, signUp, reset} = require("../controllers/User")
-
-
+const {login, signUp, reset, logout} = require("../controllers/User")
+const {isAuth} = require('../middleware/isAuth')
 
 
 
@@ -10,6 +9,7 @@ const {login, signUp, reset} = require("../controllers/User")
 router.post('/login', login)
 router.post('/signup', signUp)
 router.post('/resetPassword', reset)
+router.post('/logout', logout)
 
 //Redirects the user to the login page using the API endpoint /api/loginPage
 router.get('/loginPage', function(req,res){
@@ -22,7 +22,7 @@ router.get('/loginPage', function(req,res){
     }
 })
 
-router.get('/',(req,res,next)=>{
+router.get('/',(req,res)=>{
     try{
         return res.redirect('/loginPage')
     }catch(err){
@@ -32,21 +32,12 @@ router.get('/',(req,res,next)=>{
     }
 })
 
-router.get('/dashboard', function(req,res){
+router.get('/dashboard', isAuth, (req,res) =>{
     try{
+        
         res.render('mainPage',{title:"Dashboard"})
     }catch(err){
         return res.render(500).json({
-            message: err
-        })
-    }
-})
-
-router.get('/',(req,res,next)=>{
-    try{
-        return res.redirect('/dashboard')
-    }catch(err){
-        return res.status(500).json({
             message: err
         })
     }

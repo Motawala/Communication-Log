@@ -77,29 +77,24 @@ async function login(){
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ email, password }),
-        })
-
-        
-        
-        //Stores the Authentication results
-
-        //If the result is successfull Redirect the user to the main Page. Else Prompts the user to Enter
-        //the correct Credentials.
-        if (response.ok) {
-            console.log("Login Successful")
-            redirect_to_main();
-        }else{
-            const error_message = document.getElementById("login-error-message");
-            error_message.style.display='block';
-            error_message.innerHTML = "Incorrect Email/Password"
-            setTimeout(function() {
-                // Redirect to the desired page
-                error_message.style.display='none';
-              },1000);
-            
-            console.log("Incorrect Password")
-        }
-    
+        }).then(response =>{
+            if(response.redirected){
+                redirect_to_main();
+                console.log('redirected')
+            }else{
+                //If the result is successfull Redirect the user to the main Page. Else Prompts the user to Enter
+                //the correct Credentials.
+                const error_message = document.getElementById("login-error-message");
+                error_message.style.display='block';
+                error_message.innerHTML = "Incorrect Email/Password"
+                setTimeout(function() {
+                    // Redirect to the desired page
+                    error_message.style.display='none';
+                },1000);
+                
+                console.log("Incorrect Password")
+            }
+        })  
 }
 
 //Listens to an event onclick reset button
@@ -190,16 +185,95 @@ async function displayEmailError(){
     },1200);
 }
 
+
+//Eye button event listener
 const eyeButton = document.getElementById("eye-button");
 if(eyeButton){
-    eyeButton.addEventListener('onmousedown', showPassword);
+    eyeButton.addEventListener('click',showPassword)
 }
 
-function showPassword(){
-    const password = document.getElementById("password");
-    if(password.type == "password"){
-        password.type="text"
+async function showPassword(){
+    let passwordButton = document.getElementById('password');
+    if(passwordButton.type == "password"){
+        eyeButton.src = "/Images/eye-open.png"
+        eyeButton.style.color = "white"
+        eyeButton.style.height = "20px"
+        eyeButton.style.width = "25px"
+        passwordButton.type = "text"
     }else{
-        password.type="password"
+        eyeButton.src = "/Images/eye-close.png"
+        eyeButton.style.height = "20px"
+        eyeButton.style.width = "25px"
+        passwordButton.type = "password"
     }
+}
+
+
+//Logout button event listener
+let logoutButton = document.getElementById("logout-button");
+if(logoutButton){
+    logoutButton.addEventListener('click', logout);
+}
+
+//This function logsout the user and redirects the user to the login page
+async function logout(){
+    const logoutLink = document.getElementById('logout-button')
+    const response = await fetch("http://localhost:3000/user/logout",{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+    if(response.ok){
+        window.location.href = "/user/loginPage"
+    }else{
+        console.log("error in logout")
+    }
+}
+
+//Reset password show password function
+const eyeButtonOne = document.getElementById('eye-button-one');
+if(eyeButtonOne){
+    eyeButtonOne.addEventListener('click', showNewPassword);
+}
+
+async function showNewPassword(){
+    let newPassword = document.getElementById('new-password');
+    if(newPassword.type == "password"){
+        eyeButtonOne.src = "/Images/eye-open.png"
+        eyeButtonOne.style.color = "white"
+        eyeButtonOne.style.height = "20px"
+        eyeButtonOne.style.width = "25px"
+        newPassword.type = "text"
+    }else{
+        eyeButtonOne.src = "/Images/eye-close.png"
+        eyeButtonOne.style.height = "20px"
+        eyeButtonOne.style.width = "25px"
+        newPassword.type = "password"
+    }
+
+}
+
+
+//Reset repeat the new password, show password function
+const eyeButtonTwo = document.getElementById('eye-button-two');
+if(eyeButtonTwo){
+    eyeButtonTwo.addEventListener('click', showRepeatPassword);
+}
+
+async function showRepeatPassword(){
+    let newPassword = document.getElementById('repeat-new-password');
+    if(newPassword.type == "password"){
+        eyeButtonTwo.src = "/Images/eye-open.png"
+        eyeButtonTwo.style.color = "white"
+        eyeButtonTwo.style.height = "20px"
+        eyeButtonTwo.style.width = "25px"
+        newPassword.type = "text"
+    }else{
+        eyeButtonTwo.src = "/Images/eye-close.png"
+        eyeButtonTwo.style.height = "20px"
+        eyeButtonTwo.style.width = "25px"
+        newPassword.type = "password"
+    }
+
 }
