@@ -144,8 +144,8 @@ const reset = async (req, res) =>{
 This function logs out the user and destroys the session key
 */
 const logout = async (req,res)=>{
-    req.session.destroy.username
     try{
+        req.session.destroy.username;
         req.session.destroy()
         return res.status(200).json({
             success: true,

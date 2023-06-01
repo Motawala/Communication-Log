@@ -22,15 +22,7 @@ router.get('/loginPage', function(req,res){
     }
 })
 
-router.get('/',(req,res)=>{
-    try{
-        return res.redirect('/loginPage')
-    }catch(err){
-        return res.status(500).json({
-            message: "invalid Route"
-        })
-    }
-})
+
 
 router.get('/dashboard', isAuth, (req,res) =>{
     try{
@@ -53,15 +45,6 @@ router.get('/loginPage/reset', function(req,res){
     }
 })
 
-router.get('/',(req,res,next)=>{
-    try{
-        return res.redirect('/loginPage/reset')
-    }catch(err){
-        return res.status(400).json({
-            message:"Could not find the link"
-        })
-    }
-})
 
 router.get('/loginPage/create', function(req,res){
     try{
@@ -73,15 +56,47 @@ router.get('/loginPage/create', function(req,res){
     }
 })
 
-router.get('/',(req,res,next)=>{
+router.get('/dashboard/maintain', isAuth, (req,res) =>{
     try{
-        res.redirect('/loginPage/create')
+        res.render('maintain',{title:'Maintain Page'})
     }catch(err){
         return res.status(400).json({
             message:"Link not found"
         })
     }
 })
+
+router.get('/dashboard/guest', isAuth, (req,res) =>{
+    try{
+        res.render('guest',{title:'Guest Page'})
+    }catch(err){
+        return res.status(400).json({
+            message:"Link not found"
+        })
+    }
+})
+
+router.get('/dashboard/housekeeping', isAuth, (req,res) =>{
+    try{
+        res.render('housekeep',{title:'Housekeeping Page'})
+    }catch(err){
+        return res.status(400).json({
+            message:"Link not found"
+        })
+    }
+})
+
+router.get('/dashboard/inventory', isAuth, (req,res) =>{
+    try{
+        res.render('inventory',{title:'Inventory Page'})
+    }catch(err){
+        return res.status(400).json({
+            message:"Link not found"
+        })
+    }
+})
+
+
 
 //Exports the router.
 module.exports = router

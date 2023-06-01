@@ -281,3 +281,11 @@ async function showRepeatPassword(){
 
 }
 
+const mainLink = document.getElementById('main-link')
+if(mainLink){
+    mainLink.addEventListener('click',goToLogin)
+}
+
+async function goToLogin(){
+    window.location.href = "/user/loginPage"
+}
