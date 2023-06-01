@@ -30,7 +30,7 @@ body{
     left: calc(50% - 50px);
 }
 
-h1{
+.login-head{
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
@@ -120,6 +120,11 @@ input[type="password"]:required:invalid{
     cursor: pointer;
 }
 
+.Forgot-password-form{
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
 .Forgot-password-form a{
     padding: 5px;
     font-weight: bold;
@@ -128,7 +133,7 @@ input[type="password"]:required:invalid{
     text-decoration: none;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
-    margin-bottom: 10px;
+    
 }
 
 .CreateNewAccount a{
@@ -153,5 +158,28 @@ input[type="password"]:required:invalid{
 .option-link{
     align-items: center;
     text-align: center;
+}
+
+.password-input-form i{
+    position: absolute;
+    top: 52%;
+    right:4px;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.password-input-form i:hover{
+    color:rgb(136, 211, 255);
+    cursor:pointer;
+}
+
+.eye-button{
+    position: absolute;
+    top: 52%;
+    right:20px;
+    transform: translateY(-50%);
+    color: #616161;
+    height:25px;
+    width:30px;
 }
 

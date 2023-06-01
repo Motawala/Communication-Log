@@ -1,8 +1,5 @@
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
-const jwt = require('jsonwebtoken')
-const validator = require('validator')
-
 //User Signup
 const signUp = async (req, res) => {
     try{
@@ -92,7 +89,7 @@ const login = async (req, res) =>{
                 if(result){
                     return res.status(200).json({
                         success: true,
-                        message: "Logged in Successfully"
+                        message: "login Successful."
                     })
                 }else{
                     return res.status(400).json({
@@ -148,6 +145,8 @@ const reset = async (req, res) =>{
     }
 
 }
+
+
 
 
 

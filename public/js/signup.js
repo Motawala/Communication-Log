@@ -30,7 +30,7 @@ async function createAccount(){
 
     try {
         // Make an HTTP POST request to the login endpoint
-        const response = await fetch("http://localhost:3000/api/signup",{
+        const response = await fetch("http://localhost:3000/user/signup",{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json',
@@ -65,6 +65,6 @@ async function displayMessage(){
     signUpMessage.innerHTML = "Successfully Created the Account"
     setTimeout(function() {
         // Redirect to the desired page
-        window.location.href = '/src/login.html'; // Replace with your desired URL
-      },800);
+        window.location.href = '/user/loginPage'; // Replace with your desired URL
+    },800);
 }

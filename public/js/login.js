@@ -1,9 +1,10 @@
 
 //Function to redirect the user to the main Page.
 function redirect_to_main(){
-    window.location.href = '/src/mainPage.html';
+    window.location.href = '/user/dashboard';
 
 }
+
 
 
 //Enter key event listner for password input
@@ -69,9 +70,8 @@ async function login(){
     const password = document.getElementById("password").value;
 
     //Makes a request to the database for authentication
-    try {
         // Make an HTTP POST request to the login endpoint
-        const response = await fetch("http://localhost:3000/api/login",{
+        const response = await fetch("/user/login",{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json',
@@ -79,8 +79,9 @@ async function login(){
             body: JSON.stringify({ email, password }),
         })
 
+        
+        
         //Stores the Authentication results
-        const result = await response.json();
 
         //If the result is successfull Redirect the user to the main Page. Else Prompts the user to Enter
         //the correct Credentials.
@@ -98,17 +99,16 @@ async function login(){
             
             console.log("Incorrect Password")
         }
-    }catch(error){
-        console.error("Error occured during login", error)
-    }
+    
 }
 
-
+//Listens to an event onclick reset button
 const resetButton = document.getElementById("reset-button");
 if(resetButton){
     resetButton.addEventListener('click', resetPassword);
 }
 
+//Listen to enter key press 
 const RepeatPasswordInput = document.getElementById("repeat-new-password");
 if(RepeatPasswordInput){
     RepeatPasswordInput.addEventListener('keypress', (event) => {
@@ -127,10 +127,10 @@ async function resetPassword(){
     const password = document.getElementById("new-password").value;
     const repeatPassword = document.getElementById("repeat-new-password").value;
 
-   
+   //Post request made to the server to update the password for the user
     try{
         if(password == repeatPassword){
-            const response = await fetch("http://localhost:3000/api/resetPassword",{
+            const response = await fetch("http://localhost:3000/user/login",{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -161,21 +161,23 @@ async function resetPassword(){
                 
                 console.log("Password does not match")
         }
-    }catch(error){
-
+    }catch(err){
+        console.log(err)
     }
 }
 
+//Function displays the message onscreen if the password updated 
 async function display(){
     const forgotMessage = document.getElementById('forgot-message')
     forgotMessage.style.color = 'rgb(241, 241, 112)'
     forgotMessage.innerHTML = "Password Updated"
     setTimeout(function() {
     // Redirect to the desired page
-    window.location.href = '/src/login.html'; // Replace with your desired URL
+    window.location.href = '/user/loginPage'; // Replace with your desired URL
     },800);
 }
 
+//Displays the error message if the email/username does not exist
 async function displayEmailError(){
     const error_message = document.getElementById("forgot-message");
     error_message.style.display='block';
@@ -186,4 +188,18 @@ async function displayEmailError(){
         error_message.style.display='none';
         error_message.style.color = "red";
     },1200);
+}
+
+const eyeButton = document.getElementById("eye-button");
+if(eyeButton){
+    eyeButton.addEventListener('onmousedown', showPassword);
+}
+
+function showPassword(){
+    const password = document.getElementById("password");
+    if(password.type == "password"){
+        password.type="text"
+    }else{
+        password.type="password"
+    }
 }

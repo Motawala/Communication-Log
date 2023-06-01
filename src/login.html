@@ -6,11 +6,12 @@
     <script type="module" src="/js/login.js"></script>
     <link rel = "stylesheet" href = "/css/login_style.css">
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="login-box">
         <img src="/Images/login_logo.png" class="login-logo">
-        <h1>Login Here</h1>
+        <h1 class="login-head">Login Here</h1>
         <div class="login-form" id="login">
             <div class="login-error">
                 <p id="login-error-message"></p>
@@ -20,17 +21,16 @@
                 </div>
                 <div class="password-input-form">
                     <input type="password" id="password" class="password" name="password" placeholder="Password.." required>
+                    <button class="eye-button"><i class="fa fa-eye" style="font-size:20px" type="submit" id="eye-icon"></i></button>
                 </div>
                 <div class="login-button-link">
-                    <a>
                     <input id="login-button" value="login" type="submit" required>
-                    </a>
                 </div>
             <div class="Forgot-password-form">
-                <a id="Forgot-password" href="/src/forgot.html">Forgot Password?</a><br>
+                <a id="Forgot-password" href="/user/loginPage/reset">Forgot Password?</a><br>
             </div>
             <div class="CreateNewAccount">
-                <a id="CreatesNewAccount" href="/src/createAccount.html">Create a New Account?</a>
+                <a id="CreatesNewAccount" href="/user/loginPage/create">Create a New Account?</a>
             </div>
         </div>
     </div>
