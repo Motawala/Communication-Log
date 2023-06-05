@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
@@ -24,7 +24,7 @@ const signUp = async (req, res) => {
         //Encrypt the users Password.
         let hashedPassword
         try{
-            hashedPassword = await bcrypt.hash(password, 10);
+            hashedPassword = await bcrypt.hash(password, 9);
         }catch(error){
             req.session.error = "Error in Hashing the Password"
             return res.status(500).json({
@@ -35,7 +35,7 @@ const signUp = async (req, res) => {
 
         //Create the new User
         const user = await User.create({
-            firstname, lastname, username, email, password: hashedPassword
+            firstname, lastname, username, email, password
         })
 
         //Check the status of the new user.
@@ -93,18 +93,19 @@ const login = async (req, res) =>{
         }
         
         //Encrypt the user enterd password and compare it to the database
-        let hashedPassword
-        hashedPassword = await bcrypt.hash(password, 10);
-        const result = bcrypt.compare(password,user.password)
-        if(!result){
+        
+        let hashedPassword = await bcrypt.hash(password, 9);
+        const result = await bcrypt.compare(user.password,hashedPassword)
+        if(result){
+             //Authorize the page and session key
+            req.session.isAuth = true;
+            req.session.username = user.username;
+            return res.redirect('/user/dashboard') 
+        }else{
             return res.status(400).json({
-                message:"no result"
+                message: result
             })
         }
-        //Authorize the page and session key
-        req.session.isAuth = true;
-        req.session.username = user.username;
-        return res.redirect('/user/dashboard')
     }
     catch(error){
         console.error(error);
@@ -122,11 +123,10 @@ const reset = async (req, res) =>{
     const user = await User.findOne({email})
     //Compares the hashed password
     try{
-        hashedPassword = await bcrypt.hash(password, 10);
         if(user.email == email && user.username == username){
-            user.password = hashedPassword;
+            user.password = password;
             user.save()
-            return res.redirect('/loginPage')
+            return res.redirect('/user/loginPage')
         }else{
             req.session.error = "Email and Username does not match"
             return res.redirect('/loginPage/reset')

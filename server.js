@@ -28,8 +28,11 @@ const store = new mongoDBsession({
 app.use(session({
   secret: "Motawala",
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store: store,
+  cookie: {
+    maxAge: 60 * 60 * 1000, // Set the session age to 60 seconds (in milliseconds)
+  },
 }))
 
 //Create a monogdb session to save our login sessions

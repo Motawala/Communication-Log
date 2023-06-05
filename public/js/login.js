@@ -67,7 +67,7 @@ Login Function that Takes the Email and Password from the user and Authenticates
 async function login(){
     //Gets the Email and Password from the User
     const email = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    let password = document.getElementById("password").value;
 
     //Makes a request to the database for authentication
         // Make an HTTP POST request to the login endpoint
@@ -125,7 +125,7 @@ async function resetPassword(){
    //Post request made to the server to update the password for the user
     try{
         if(password == repeatPassword){
-            const response = await fetch("http://localhost:3000/user/login",{
+            const response = await fetch("/user/resetPassword",{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -133,13 +133,9 @@ async function resetPassword(){
                 body: JSON.stringify({email,username,password})
             })
 
-            if(response.ok){
+            if(response.redirected){
                 console.log("Password Update Successful");
                 display();
-                return res.status(200).json({
-                    success: true,
-                    message: "Password Updated"
-                })
             }else{
                 console.log('Password reset unsuccessful');
                 displayEmailError();
@@ -167,8 +163,8 @@ async function display(){
     forgotMessage.style.color = 'rgb(241, 241, 112)'
     forgotMessage.innerHTML = "Password Updated"
     setTimeout(function() {
-    // Redirect to the desired page
-    window.location.href = '/user/loginPage'; // Replace with your desired URL
+        // Redirect to the desired page
+        window.location.href = '/user/loginPage'; // Replace with your desired URL
     },800);
 }
 
