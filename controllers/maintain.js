@@ -9,11 +9,6 @@ const save = async (req,res) =>{
         title, content, time
     })
 
-    //Retrives all the Data Input from the user and sends it to the client
-    const data = await maintainLogs.find({})
-    
-
-    //This function looks for the content from each indexes
     
     
     if(log){
@@ -30,4 +25,21 @@ const save = async (req,res) =>{
     
 }
 
-module.exports = {save}
+
+
+const display = async (req,res) =>{
+
+//Retrives all the Data Input from the user and sends it to the client
+    
+    try{
+        const data = await maintainLogs.find({})
+        
+        return res.status(200).json(data);
+    }catch(err){
+        return res.status(400).json({
+            success: false,
+            message: 'Data not Found',err
+        })
+    }
+}
+module.exports = {save, display}
