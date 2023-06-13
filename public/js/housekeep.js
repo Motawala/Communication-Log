@@ -54,12 +54,10 @@ async function saveMessage(){
 async function Display(){
     try{
         const mainContent = document.getElementById('data-content')
-        const displayContent = document.getElementById('main-content')
-        const mainBody = document.getElementById('content-display')
         await fetch('/user/display')
         .then(response => response.json())
         .then(data =>{
-            console.log(data)
+            console.log(JSON.stringify(data))
             data.forEach(record => {
                 const titleElement = document.createElement('p');
                 const timeElement = document.createElement('p');

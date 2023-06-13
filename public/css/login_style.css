@@ -133,22 +133,23 @@ input[type="password"]:required:invalid{
 .Forgot-password-form a{
     padding: 5px;
     font-weight: bold;
-    padding: 10px;
     color: darkgray;
     text-decoration: none;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
     
+    
 }
+
 
 .CreateNewAccount a{
     padding: 5px;
     font-weight: bold;
-    padding: 10px;
     color: darkgray;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
     text-decoration: none;
+    border:none;
 }
 
 .login-box a:hover{

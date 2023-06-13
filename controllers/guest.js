@@ -1,11 +1,11 @@
-const maintainLogs = require('../models/maintain')
+const guestLogs = require('../models/guest')
 
-const save = async (req,res) =>{
+const saveGuest = async (req,res) =>{
     try{
         const {title, content, time}= req.body;
 
         //Save the Data input from thse user to the database
-        const log = await maintainLogs.create({
+        const log = await guestLogs.create({
             title, content, time
         })
 
@@ -33,12 +33,12 @@ const save = async (req,res) =>{
 
 
 
-const display = async (req,res) =>{
+const displayGuest = async (req,res) =>{
 
 //Retrives all the Data Input from the user and sends it to the client
     
     try{
-        const data = await maintainLogs.find({})
+        const data = await guestLogs.find({})
         
         return res.status(200).json(data);
     }catch(err){
@@ -48,4 +48,4 @@ const display = async (req,res) =>{
         })
     }
 }
-module.exports = {save, display}
+module.exports = {saveGuest,displayGuest}

@@ -4,26 +4,45 @@
 <title>Employees Communication Log</title>
 <link rel="icon" type="image/x-icon" href="/Images/Logo.png" class="back-logo">
 <script type="module" src="/js/login.js"></script>
-<script type="module" src="/js/maintain.js"></script>
+<script type="module" src="/js/housekeep.js"></script>
 <link rel="stylesheet" href = "/css/housekeep.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 </head>
 <body id="bd">
     <div class="main-dashboard">
-        <img src="/Images/housekeeping2.png" class="housekeep-logo">
-    </div>
-    <div class="home">
-        <a href="/src/mainPage.html" class="home-link"><i class="fa fa-home fa-3x" type="submit"></i></a>
+        <img src="/Images/housekeeping2.png" class="maintain-logo">
     </div>
     <div class="notepad-box">
-        <div class="note-display">
-        </div>
-        <div class="notepad-input">
-            <input id="note-input" type="text" placeholder="Enter the information..." name="notes">
-            <div class="send-icon">
-                <button id="send-button" class="fa fa-send fa-2x" type="submit"></button>
+        <a class="save-button" id="save-button"><i class=" fa fa-save fa-3x" type="submit"></i></a>
+        <div class="nav-bar">
+            <a href="/user/dashboard">Home</a>
+            <div class="View-dropdown">
+                <button class="view">View</button>
+                <div class="view-dropdown-content">
+                    <a href="/user/dashboard/guest">Guest</a>
+                    <a href="/user/dashboard/maintainDisplay">Maintain</a>
+                    <a href="/user/dashboard/housekeepDisplay">Housekeeping</a>
+                    <a href="/user/dashboard/inventory">inventory</a>
+                </div>
             </div>
+            <div class="go-to-dropdown">
+                <button class="go-to">Go To</button>
+                <div class="go-to-dropdown-content">
+                    <a href="/user/dashboard/guest">Guest Log</a>
+                    <a href="/user/dashboard/maintain">Maintain Log</a>
+                    <a href="/user/dashboard/housekeep">Housekeeping Log</a>
+                    <a href="/user/dashboard/inventory">inventory Log</a>
+                </div>
+            </div>
+            <p class="saved-message" id="saved-message"></p>
+        </div>
+        <div class="content">
+            <input id="note-title" type="text" placeholder="Title" name="notes" class="note-title">
+            <form method="post">
+                <textarea class="note-content" id="note-content" placeholder="Content"></textarea>
+            </form>
         </div>
     </div>
 </body>

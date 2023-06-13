@@ -11,19 +11,18 @@
 
 </head>
 <body id="bd">
-    <div class="main-dashboard">
-        <img src="/Images/maintain.png" class="maintain-logo">
-    </div>
+
     <div class="notepad-box">
         <a class="save-button" id="save-button"><i class=" fa fa-save fa-3x" type="submit"></i></a>
         <div class="nav-bar">
             <a href="/user/dashboard">Home</a>
+            
             <div class="View-dropdown">
                 <button class="view">View</button>
                 <div class="view-dropdown-content">
-                    <a href="/user/dashboard/guest">Guest</a>
+                    <a href="/user/dashboard/guestDisplay">Guest</a>
                     <a href="/user/dashboard/maintainDisplay">Maintain</a>
-                    <a href="/user/dashboard/housekeeping">Housekeeping</a>
+                    <a href="/user/dashboard/housekeepDisplay">Housekeeping</a>
                     <a href="/user/dashboard/inventory">inventory</a>
                 </div>
             </div>
@@ -36,6 +35,7 @@
                     <a href="/user/dashboard/inventory">inventory Log</a>
                 </div>
             </div>
+            <p class="saved-message" id="saved-message"></p>
         </div>
         <div class="content">
             <input id="note-title" type="text" placeholder="Title" name="notes" class="note-title">

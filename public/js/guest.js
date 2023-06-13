@@ -26,7 +26,7 @@ async function saveContent(){
     const content = Newlinecontent
     //Sends a post request to the server to save the data entered by the user.
     try{
-        const response = await fetch("/user/save",{
+        const response = await fetch("/user/saveGuest",{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json',
@@ -56,10 +56,9 @@ async function Display(){
         const mainContent = document.getElementById('data-content')
         const displayContent = document.getElementById('main-content')
         const mainBody = document.getElementById('content-display')
-        await fetch('/user/display')
+        await fetch('/user/displayGuest')
         .then(response => response.json())
         .then(data =>{
-            console.log(data)
             data.forEach(record => {
                 const titleElement = document.createElement('p');
                 const timeElement = document.createElement('p');
@@ -93,5 +92,5 @@ if(takeBack){
 }
 
 async function takeBackFunc(){
-    window.location.href = '/user/dashboard/maintain'
+    window.location.href = '/user/dashboard/guest'
 }
