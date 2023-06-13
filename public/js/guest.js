@@ -47,7 +47,7 @@ async function saveContent(){
 
 async function saveMessage(){
     const save = document.getElementById('saved-message');
-    save.innerHTML = "Data Saved"
+    save.innerHTML = "Inforamtion Saved"
 }
 
 

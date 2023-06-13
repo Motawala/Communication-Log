@@ -1,7 +1,26 @@
 body{
     background-color: green;
-    padding:5px;
+    padding:0;
+    margin:0
+}
 
+.navigation{    
+    background-color:aliceblue;
+    opacity: 0.8;
+    overflow: hidden;
+    height:auto;
+    text-align: right;
+    margin:auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading{
+    font-size: 30px;
+    padding:20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
 }
 
 .notepad-box{
@@ -11,9 +30,7 @@ body{
     margin:auto;
     background-color: rgb(62, 59, 59);
     opacity: 0.8;
-    border-radius: 10px;
     align-items: center;
-    padding: 30px;
     overflow:scroll;
     position:relative;
 }
@@ -106,7 +123,7 @@ body{
     outline:none;
     border:none;
     background-color:inherit;
-    padding: 14px 10px;
+    padding: 14px 20px;
     font-weight: bold;
     font-size: 19px;
     text-decoration: none;
@@ -137,7 +154,7 @@ body{
     outline:none;
     border:none;
     background-color:inherit;
-    padding: 14px 10px;
+    padding: 14px 20px;
     font-weight: bold;
     font-size: 19px;
     text-decoration: none;
@@ -188,7 +205,7 @@ body{
     outline:none;
     border:none;
     background-color:inherit;
-    padding: 14px 10px;
+    padding: 14px 20px;
     font-weight: bold;
     font-size: 19px;
     text-decoration: none;
