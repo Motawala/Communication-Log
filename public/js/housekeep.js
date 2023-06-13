@@ -26,7 +26,7 @@ async function saveContent(){
     const content = Newlinecontent
     //Sends a post request to the server to save the data entered by the user.
     try{
-        const response = await fetch("/user/save",{
+        const response = await fetch("/user/saveHousekeep",{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json',
@@ -47,17 +47,16 @@ async function saveContent(){
 
 async function saveMessage(){
     const save = document.getElementById('saved-message');
-    save.innerHTML = "Data Saved"
+    save.innerHTML = "Information Saved"
 }
 
 
 async function Display(){
     try{
         const mainContent = document.getElementById('data-content')
-        await fetch('/user/display')
+        await fetch('/user/displayHousekeep')
         .then(response => response.json())
         .then(data =>{
-            console.log(JSON.stringify(data))
             data.forEach(record => {
                 const titleElement = document.createElement('p');
                 const timeElement = document.createElement('p');

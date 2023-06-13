@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const guestLogs = new mongoose.Schema({
+const housekeepLogs = new mongoose.Schema({
     title:{
         type: String,
         required: true,
@@ -20,5 +20,5 @@ const guestLogs = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('guestLogs', guestLogs);
+module.exports = mongoose.model('housekeepLogs', housekeepLogs);
 

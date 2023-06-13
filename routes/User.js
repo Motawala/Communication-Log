@@ -4,7 +4,7 @@ const {login, signUp, reset, logout} = require("../controllers/User")
 const {isAuth} = require('../middleware/isAuth')
 const {save, display} = require('../controllers/maintain')
 const {saveGuest, displayGuest} = require('../controllers/guest')
-
+const {saveHousekeep, displayHousekeep} = require('../controllers/housekeep')
 //Creates the /login API 
 router.post('/login', login)
 router.post('/signup', signUp)
@@ -15,6 +15,9 @@ router.get('/display', display)
 
 router.post('/saveGuest', saveGuest)
 router.get('/displayGuest',displayGuest)
+
+router.post('/saveHousekeep',saveHousekeep);
+router.get('/displayHousekeep',displayHousekeep);
 
 //Redirects the user to the login page using the API endpoint /api/loginPage
 router.get('/loginPage', function(req,res){
