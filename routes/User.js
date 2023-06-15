@@ -1,16 +1,21 @@
 const express = require('express')
 const router = express.Router();
-const {login, signUp, reset, logout} = require("../controllers/User")
+const {login, signUp, reset, logout, getName} = require("../controllers/User")
 const {isAuth} = require('../middleware/isAuth')
 const {save, display} = require('../controllers/maintain')
 const {saveGuest, displayGuest} = require('../controllers/guest')
 const {saveHousekeep, displayHousekeep} = require('../controllers/housekeep')
+const {sendEmail} = require('../controllers/email')
+
+
 //Creates the /login API 
 router.post('/login', login)
 router.post('/signup', signUp)
 router.post('/resetPassword', reset)
 router.post('/logout', logout)
 router.post('/save', isAuth,save)
+router.post('/send-email', sendEmail)
+
 router.get('/display', display)
 
 router.post('/saveGuest', saveGuest)
@@ -18,6 +23,8 @@ router.get('/displayGuest',displayGuest)
 
 router.post('/saveHousekeep',saveHousekeep);
 router.get('/displayHousekeep',displayHousekeep);
+
+router.get('/name',getName)
 
 //Redirects the user to the login page using the API endpoint /api/loginPage
 router.get('/loginPage', function(req,res){

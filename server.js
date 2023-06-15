@@ -14,7 +14,7 @@ const session = require('express-session')
 const mongoDBsession = require('connect-mongodb-session')(session);
 //Import MongoClient and URI
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://karanp45:Kp2992002@project.viinysi.mongodb.net/user";
+const uri = "mongodb+srv://kapatel:Kp2992002@cluster0.ygitbgz.mongodb.net/user";
 
 
 //Store the session key in mongodb
@@ -58,7 +58,7 @@ app.set('view engine', 'html');
 
 
 // Listen on port 3000
-app.listen(3000,  () => console.log("Application running on port 3000"));
+app.listen(3000, () => console.log("Application running on port 3000"));
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,3 +115,8 @@ run().catch(console.dir);
 
 
 module.exports = session;
+
+
+
+
+

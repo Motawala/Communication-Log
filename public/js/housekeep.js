@@ -6,6 +6,15 @@ window.addEventListener('load',function(event){
     Display()
 })
 
+
+const heading = document.getElementById('heading');
+if(heading){
+    heading.addEventListener('click', function(){
+        location.reload();
+    })
+}
+
+
 async function initTinyMCE(){
     tinymce.init({
         selector: '#note-content'
@@ -62,7 +71,10 @@ async function Display(){
                 const timeElement = document.createElement('p');
                 const contentElement = document.createElement('p');
                 
-                titleElement.textContent = "Title: " + record.title + " @ " + record.time
+                mainContent.style.border = "2px solid black"
+                mainContent.style.padding = "10px"
+                titleElement.style.color = "grey"
+                titleElement.textContent = record.title + " ------  Time: " + record.time + '\n'
                 contentElement.textContent = record.content 
                 titleElement.style.fontSize = "20px"
                 titleElement.style.fontWeight ="bold"
@@ -89,6 +101,18 @@ if(takeBack){
     takeBack.addEventListener('click',takeBackFunc)
 }
 
+
+const homeButton = document.getElementById('home-button-display')
+if(homeButton){
+    homeButton.addEventListener('click', redirect_to_Dashboard)
+}
+
+
 async function takeBackFunc(){
-    window.location.href = '/user/dashboard/maintain'
+    window.location.href = '/user/dashboard/housekeeping'
+}
+
+
+async function redirect_to_Dashboard(){
+    window.location.href = '/user/dashboard'
 }

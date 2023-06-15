@@ -2,7 +2,7 @@
 //Function to redirect the user to the main Page.
 function redirect_to_main(){
     window.location.href = '/user/dashboard';
-
+    
 }
 
 
@@ -68,7 +68,7 @@ async function login(){
     //Gets the Email and Password from the User
     const email = document.getElementById("username").value;
     let password = document.getElementById("password").value;
-
+    var firstname 
     //Makes a request to the database for authentication
         // Make an HTTP POST request to the login endpoint
         const response = await fetch("/user/login",{
@@ -77,24 +77,28 @@ async function login(){
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ email, password }),
-        }).then(response =>{
-            if(response.redirected){
-                redirect_to_main();
-                console.log('redirected')
-            }else{
-                //If the result is successfull Redirect the user to the main Page. Else Prompts the user to Enter
-                //the correct Credentials.
-                const error_message = document.getElementById("login-error-message");
-                error_message.style.display='block';
-                error_message.innerHTML = "Incorrect Email/Password"
-                setTimeout(function() {
-                    // Redirect to the desired page
-                    error_message.style.display='none';
-                },1000);
-                
-                console.log("Incorrect Password")
-            }
-        })  
+        })
+        await response.json().then(data =>{
+            firstname = data
+            console.log(firstname) 
+        })
+        
+        if(response.ok){
+            redirect_to_main();
+           
+        }else{
+            //If the result is successfull Redirect the user to the main Page. Else Prompts the user to Enter
+            //the correct Credentials.
+            const error_message = document.getElementById("login-error-message");
+            error_message.style.display='block';
+            error_message.innerHTML = "Incorrect Email/Password"
+            setTimeout(function() {
+                // Redirect to the desired page
+                error_message.style.display='none';
+            },1000);
+            
+            console.log("Incorrect Password")
+        }
 }
 
 //Listens to an event onclick reset button
@@ -284,4 +288,17 @@ if(mainLink){
 
 async function goToLogin(){
     window.location.href = "/user/loginPage"
+}
+
+async function getName(){
+
+    try{
+        await fetch('/user/getName')
+        .then(resposne.text())
+        .then(name =>{
+            console.log(name)
+        })
+    }catch(error){
+        console.log(error)
+    }
 }

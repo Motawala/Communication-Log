@@ -4,7 +4,22 @@ window.addEventListener('load',function(event){
     event.preventDefault();
     initTinyMCE()
     Display()
+    email()
 })
+
+
+const homeButton = document.getElementById('home-button-display')
+if(homeButton){
+    homeButton.addEventListener('click', redirec_to_Dashboard)
+}
+
+const heading = document.getElementById('heading');
+if(heading){
+    heading.addEventListener('click', function(){
+        location.reload();
+    })
+}
+
 
 async function initTinyMCE(){
     tinymce.init({
@@ -18,12 +33,9 @@ if(save){
 }
 
 async function saveContent(){
-    const Rawcontent = tinymce.get('note-content').getContent();
+    const content = tinymce.get('note-content').getContent();
     const title = document.getElementById('note-title').value;
     const time = new Date().toLocaleTimeString();
-    //Replaces the <p> attribute of html with an empty string
-    const Newlinecontent = Rawcontent.replace(/(<([^>]+)>)/ig, '')
-    const content = Newlinecontent
     //Sends a post request to the server to save the data entered by the user.
     try{
         const response = await fetch("/user/save",{
@@ -59,14 +71,15 @@ async function Display(){
         await fetch('/user/display')
         .then(response => response.json())
         .then(data =>{
-            console.log(data)
             data.forEach(record => {
+                mainContent.style.border = "2px solid black"
+                mainContent.style.padding = "10px"
                 const titleElement = document.createElement('p');
                 const timeElement = document.createElement('p');
                 const contentElement = document.createElement('p');
-                
-                titleElement.textContent = "Title: " + record.title + " @ " + record.time
-                contentElement.textContent = record.content 
+                titleElement.style.color = "black"
+                titleElement.innerHTML = record.title + " ------  Time: " + record.time + '\n'
+                contentElement.innerHTML = record.content 
                 titleElement.style.fontSize = "20px"
                 titleElement.style.fontWeight ="bold"
                 titleElement.style.textDecoration = "underline"
@@ -94,4 +107,36 @@ if(takeBack){
 
 async function takeBackFunc(){
     window.location.href = '/user/dashboard/maintain'
+}
+
+
+async function redirec_to_Dashboard(){
+    window.location.href = "/user/dashboard"
+}
+
+
+async function email(){
+    const to = "karanp3898@gmail.com"
+    const from = "pkaran1100@gmail.com"
+    const subject = "Test Email From Mota"
+    const text = "Hello Motawala"
+    const CC = "kapatel@albany.edu"
+
+    try{
+        const response = await fetch("/user/send-email",{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({to, CC, from, subject, text}),
+        })
+
+        if(response.ok){
+            console.log("Email Sent")
+        }else{
+            console.log("Error check server")
+        }
+    }catch(err){
+        console.log(err)
+    }
 }

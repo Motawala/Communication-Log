@@ -6,6 +6,15 @@ window.addEventListener('load',function(event){
     Display()
 })
 
+
+const heading = document.getElementById('heading');
+if(heading){
+    heading.addEventListener('click', function(){
+        location.reload();
+    })
+}
+
+
 async function initTinyMCE(){
     tinymce.init({
         selector: '#note-content'
@@ -22,7 +31,7 @@ async function saveContent(){
     const title = document.getElementById('note-title').value;
     const time = new Date().toLocaleTimeString();
     //Replaces the <p> attribute of html with an empty string
-    const Newlinecontent = Rawcontent.replace(/(<([^>]+)>)/ig, '')
+    const Newlinecontent = Rawcontent.replace(/(<([^>]+)>)/ig, '') + '\n'
     const content = Newlinecontent
     //Sends a post request to the server to save the data entered by the user.
     try{
@@ -60,11 +69,13 @@ async function Display(){
         .then(response => response.json())
         .then(data =>{
             data.forEach(record => {
+                mainContent.style.border = "2px solid black"
+                mainContent.style.padding = "10px"
                 const titleElement = document.createElement('p');
                 const timeElement = document.createElement('p');
                 const contentElement = document.createElement('p');
-                
-                titleElement.textContent = "Title: " + record.title + " @ " + record.time
+                titleElement.style.color = "grey"
+                titleElement.textContent = record.title + " ------  Time: " + record.time + '\n'
                 contentElement.textContent = record.content 
                 titleElement.style.fontSize = "20px"
                 titleElement.style.fontWeight ="bold"
@@ -90,6 +101,16 @@ const takeBack = document.getElementById('take-back-button');
 if(takeBack){
     takeBack.addEventListener('click',takeBackFunc)
 }
+
+const homeButton = document.getElementById('home-button-display')
+if(homeButton){
+    homeButton.addEventListener('click',redirect_to_Dashboard)
+}
+
+async function redirect_to_Dashboard(){
+    window.location.href = '/user/dashboard'
+}
+
 
 async function takeBackFunc(){
     window.location.href = '/user/dashboard/guest'

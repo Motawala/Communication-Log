@@ -100,7 +100,7 @@ const login = async (req, res) =>{
              //Authorize the page and session key
             req.session.isAuth = true;
             req.session.username = user.username;
-            return res.redirect('/user/dashboard') 
+            return res.status(200).json(user.firstname)
         }else{
             return res.status(400).json({
                 message: result
@@ -157,7 +157,22 @@ const logout = async (req,res)=>{
 }
 
 
+const getName = async(req,res)=>{
+    try{
+        const username = req.session.username;
+        const firstname = await User.findOne({username})
+        return res.status(200).json({
+            message:firstname.firstname
+        });
+    }catch(error){
+        return res.status(400).json({
+            success:false,
+            message:"Name not found"
+        })
+    }
+}
+
 
 
 //Export the login module for the API
-module.exports = {login, signUp, reset, logout};
+module.exports = {login, signUp, reset, logout, getName};
