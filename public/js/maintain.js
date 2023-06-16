@@ -4,7 +4,6 @@ window.addEventListener('load',function(event){
     event.preventDefault();
     initTinyMCE()
     Display()
-    email()
 })
 
 
@@ -119,19 +118,61 @@ async function email(){
     const to = "karanp3898@gmail.com"
     const from = "pkaran1100@gmail.com"
     const subject = "Test Email From Mota"
-    const text = "Hello Motawala"
-    const CC = "kapatel@albany.edu"
+    let messageText = ""
 
+    //Save the content from the Database to the Array
+    var titleArr = []
+    var contentArr = []
+    
+
+
+    try{
+        await fetch('/user/display')
+        .then(response => response.json())
+        .then(data =>{
+            data.forEach(record => {
+                titleArr.push(record.title)
+                contentArr.push(record.content)
+            })
+        })
+    }catch(err){
+        console.log(err)
+    }
+    
+    //Define the length of the Array
+    const length = titleArr.length;
+    const regex = /<[^>]+>/g;
+
+
+    //Create an email message that is to be sent
+    for(let i = 0; i<length; i++){
+        if(titleArr[i] != undefined && contentArr[i] != undefined){
+            contentArr[i] = contentArr[i].replace(/<[^>]+>/g, '');
+            messageText = messageText + '\n' + "Title: " + titleArr[i] + '\n' + "Note: " + contentArr[i] + '\n'
+        }
+    }
+    
+
+    //Create the Email Message JSON
+    const message = {
+        to:to,
+        from:from,
+        subject:subject,
+        text:messageText
+    }
+
+
+    //Send the Message to the receiptant
     try{
         const response = await fetch("/user/send-email",{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({to, CC, from, subject, text}),
+            body: JSON.stringify({message}),
         })
 
-        if(response.ok){
+        if(response){
             console.log("Email Sent")
         }else{
             console.log("Error check server")
@@ -139,4 +180,16 @@ async function email(){
     }catch(err){
         console.log(err)
     }
+
 }
+
+
+
+function performActionAtTime(timeInMilliseconds) {
+    setTimeout(email, timeInMilliseconds);
+  }
+  
+
+const delay = 24 * 60 * 60 * 1000; // 3 seconds
+//performActionAtTime(delay);
+  
