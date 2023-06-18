@@ -14,7 +14,7 @@ if(heading){
     })
 }
 
-
+//Initializes the text Editor on the web page
 async function initTinyMCE(){
     tinymce.init({
         selector: '#note-content'
@@ -26,13 +26,15 @@ if(save){
     save.addEventListener('click',saveContent)
 }
 
+//This function makes a post request to the server to save the data to the database.
 async function saveContent(){
-    const Rawcontent = tinymce.get('note-content').getContent();
+    const content = tinymce.get('note-content').getContent();
     const title = document.getElementById('note-title').value;
-    const time = new Date().toLocaleTimeString();
+    const dateTime = new Date()
+    const time = dateTime.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
+    const date = dateTime.toLocaleDateString();
     //Replaces the <p> attribute of html with an empty string
-    const Newlinecontent = Rawcontent.replace(/(<([^>]+)>)/ig, '')
-    const content = Newlinecontent
+    //const Newlinecontent = Rawcontent.replace(/(<([^>]+)>)/ig, '')
     //Sends a post request to the server to save the data entered by the user.
     try{
         const response = await fetch("/user/saveHousekeep",{
@@ -40,7 +42,7 @@ async function saveContent(){
             headers:{
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({title, content, time}),
+            body: JSON.stringify({title, content, time, date}),
         })
 
         if(response){
@@ -59,35 +61,42 @@ async function saveMessage(){
     save.innerHTML = "Information Saved"
 }
 
-
+//This function retrives the data from the database to display it on the screen
 async function Display(){
     try{
-        const mainContent = document.getElementById('data-content')
+        const displayContent = document.getElementById('main-content')
+        var titleArray = []
+        var contentArray = []
         await fetch('/user/displayHousekeep')
         .then(response => response.json())
         .then(data =>{
             data.forEach(record => {
-                const titleElement = document.createElement('p');
-                const timeElement = document.createElement('p');
+                const titleElement = document.createElement('li');
                 const contentElement = document.createElement('p');
-                
-                mainContent.style.border = "2px solid black"
-                mainContent.style.padding = "10px"
                 titleElement.style.color = "grey"
-                titleElement.textContent = record.title + " ------  Time: " + record.time + '\n'
-                contentElement.textContent = record.content 
+                titleElement.innerHTML = record.title + " ------>  Time: " + record.time + ", Date: " + record.date
+                contentElement.innerHTML = record.content 
                 titleElement.style.fontSize = "20px"
                 titleElement.style.fontWeight ="bold"
                 titleElement.style.textDecoration = "underline"
+                titleElement.style.fontFamily = " Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
                 titleElement.style.marginBottom = "0"
                 titleElement.style.padding = "0"
                 contentElement.style.margin = "0"
                 contentElement.style.padding = "0"
                 contentElement.style.fontSize = "16px"
-                mainContent.appendChild(titleElement);
-                mainContent.appendChild(contentElement)
+                titleArray.push(titleElement)
+                contentArray.push(contentElement)
             })
         })
+
+        const length = titleArray.length
+        for(let i=0; i<=length; i++){
+            displayContent.style.border = "2px solid black"
+            displayContent.style.padding = "10px"
+            displayContent.appendChild(titleArray[i])
+            displayContent.appendChild(contentArray[i])
+        }
         
     }catch(error){
         console.log(error)
@@ -116,3 +125,85 @@ async function takeBackFunc(){
 async function redirect_to_Dashboard(){
     window.location.href = '/user/dashboard'
 }
+
+
+//This function makes a post request to the server to send email
+async function email(){
+    const to = "karanp3898@gmail.com"
+    const from = "pkaran1100@gmail.com"
+    const subject = "Test Email From Mota"
+    let messageText = ""
+
+    //Save the content from the Database to the Array
+    var titleArr = []
+    var contentArr = []
+    
+
+    //Retrives the data from the database to email it
+    try{
+        await fetch('/user/displayHousekeep')
+        .then(response => response.json())
+        .then(data =>{
+            data.forEach(record => {
+                titleArr.push(record.title)
+                contentArr.push(record.content)
+            })
+        })
+    }catch(err){
+        console.log(err)
+    }
+    
+    //Define the length of the Array
+    const length = titleArr.length;
+    const regex = /<[^>]+>/g;
+
+
+    //Create an email message that is to be sent
+    for(let i = 0; i<length; i++){
+        if(titleArr[i] != undefined && contentArr[i] != undefined){
+            contentArr[i] = contentArr[i].replace(/<[^>]+>/g, '');
+            messageText = messageText + '\n' + "Title: " + titleArr[i] + '\n' + "Note: " + contentArr[i] + '\n'
+        }
+    }
+    
+
+    //Create the Email Message JSON
+    const message = {
+        to:to,
+        from:from,
+        subject:subject,
+        text:messageText
+    }
+
+
+    //Send the Message to the receiptant
+    try{
+        const response = await fetch("/user/send-email",{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({message}),
+        })
+
+        if(response){
+            console.log("Email Sent")
+        }else{
+            console.log("Error check server")
+        }
+    }catch(err){
+        console.log(err)
+    }
+
+}
+
+
+
+function performActionAtTime(timeInMilliseconds) {
+    setTimeout(email, timeInMilliseconds);
+  }
+  
+
+const delay = 24 * 60 * 60 * 1000; // 3 seconds
+//performActionAtTime(delay);
+  

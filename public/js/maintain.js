@@ -19,7 +19,7 @@ if(heading){
     })
 }
 
-
+//Initializes the text editor on the web page
 async function initTinyMCE(){
     tinymce.init({
         selector: '#note-content'
@@ -31,10 +31,14 @@ if(save){
     save.addEventListener('click',saveContent)
 }
 
+
+//This function makes a post request to the server to save the data to the database.
 async function saveContent(){
     const content = tinymce.get('note-content').getContent();
     const title = document.getElementById('note-title').value;
-    const time = new Date().toLocaleTimeString();
+    const dateTime = new Date()
+    const time = dateTime.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
+    const date = dateTime.toLocaleDateString();
     //Sends a post request to the server to save the data entered by the user.
     try{
         const response = await fetch("/user/save",{
@@ -42,7 +46,7 @@ async function saveContent(){
             headers:{
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({title, content, time}),
+            body: JSON.stringify({title, content, time, date}),
         })
 
         if(response){
@@ -62,35 +66,45 @@ async function saveMessage(){
 }
 
 
+//This function makes a GET request to the server to retrive the data from the Database 
 async function Display(){
     try{
-        const mainContent = document.getElementById('data-content')
+
+        //Fetches the Data from the server and converts it into an array and then displays it 
         const displayContent = document.getElementById('main-content')
-        const mainBody = document.getElementById('content-display')
+        var titleArray = []
+        var contentArray = []
         await fetch('/user/display')
         .then(response => response.json())
         .then(data =>{
             data.forEach(record => {
-                mainContent.style.border = "2px solid black"
-                mainContent.style.padding = "10px"
-                const titleElement = document.createElement('p');
-                const timeElement = document.createElement('p');
+               
+                const titleElement = document.createElement('li');
                 const contentElement = document.createElement('p');
                 titleElement.style.color = "black"
-                titleElement.innerHTML = record.title + " ------  Time: " + record.time + '\n'
+                titleElement.innerHTML = record.title + " ------>  Time: " + record.time + ", Date: " + record.date
                 contentElement.innerHTML = record.content 
                 titleElement.style.fontSize = "20px"
                 titleElement.style.fontWeight ="bold"
                 titleElement.style.textDecoration = "underline"
+                titleElement.style.fontFamily = " Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
                 titleElement.style.marginBottom = "0"
                 titleElement.style.padding = "0"
                 contentElement.style.margin = "0"
                 contentElement.style.padding = "0"
                 contentElement.style.fontSize = "16px"
-                mainContent.appendChild(titleElement);
-                mainContent.appendChild(contentElement)
+                titleArray.push(titleElement)
+                contentArray.push(contentElement)
             })
         })
+
+        const length = titleArray.length
+        for(let i=0; i<=length; i++){
+            displayContent.style.border = "2px solid black"
+            displayContent.style.padding = "10px"
+            displayContent.appendChild(titleArray[i])
+            displayContent.appendChild(contentArray[i])
+        }
         
     }catch(error){
         console.log(error)
@@ -114,18 +128,20 @@ async function redirec_to_Dashboard(){
 }
 
 
+
+//This function sends a post request to the server to send the email
 async function email(){
-    const to = "karanp3898@gmail.com"
-    const from = "pkaran1100@gmail.com"
-    const subject = "Test Email From Mota"
-    let messageText = ""
+    const to = "karanp3898@gmail.com"               //Receiptant
+    const from = "pkaran1100@gmail.com"             //Sender
+    const subject = "Test Email From Mota"          //Subject of the email
+    let messageText = ""                            //Message 
 
     //Save the content from the Database to the Array
     var titleArr = []
     var contentArr = []
     
 
-
+    //Makes a post request with the required body
     try{
         await fetch('/user/display')
         .then(response => response.json())

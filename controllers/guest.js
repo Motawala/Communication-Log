@@ -2,11 +2,11 @@ const guestLogs = require('../models/guest')
 
 const saveGuest = async (req,res) =>{
     try{
-        const {title, content, time}= req.body;
+        const {title, content, time, date}= req.body;
 
         //Save the Data input from thse user to the database
         const log = await guestLogs.create({
-            title, content, time
+            title, content, time, date
         })
 
         

@@ -154,6 +154,11 @@ body{
     border-radius: 5px;
 }
 
+.logout-logo:hover{
+    background-color: lightslategrey;
+    cursor: pointer;
+}
+
 .logout{/*in the top left corner*/
     left:16px;
     top: 8px;

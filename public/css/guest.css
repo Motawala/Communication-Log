@@ -1,12 +1,12 @@
 body{
-    background-color: green;
+    background-color: white;
     padding:0;
     margin:0
 
 }
 
 .navigation{    
-    background-color:aliceblue;
+    background-color:rgb(204, 248, 204);
     opacity: 0.8;
     overflow: hidden;
     height:auto;
@@ -33,7 +33,7 @@ body{
     height:100vh fit-content;
     min-height: 100%;
     margin:auto;
-    background-color: rgb(62, 59, 59);
+    background-color: rgb(204, 248, 204);
     opacity: 0.8;
     align-items: center;
     padding: 45px;
@@ -97,7 +97,7 @@ body{
 
 
 .save-button:hover{
-    color:white;
+    color:rgb(59, 58, 58);
     cursor: pointer;
 }
 
@@ -119,7 +119,7 @@ body{
 
 .nav-bar{
     float:left;
-    background-color: black;
+    background-color: rgb(59, 58, 58);
     height:50px;
     width:80%;
     border-radius:3px;
@@ -192,7 +192,7 @@ body{
 }
 
 .view-dropdown-content a:hover{
-    background-color: rgb(83, 82, 82);
+    background-color: rgb(59, 58, 58);
     cursor: pointer;
 }
 
@@ -241,7 +241,7 @@ body{
 }
 
 .go-to-dropdown-content a:hover{
-    background-color: rgb(83, 82, 82);
+    background-color: rgb(59, 58, 58);
     cursor: pointer;
 }
 
@@ -259,11 +259,11 @@ body{
 .content-display{
     width: 95%;
     height: 100vh fit-content;
-    background-color: rgb(62, 59, 59);
+    background-color: rgb(204, 248, 204);
     opacity: 0.8;
     padding: 30px;
     align-items: center;
-    color: white;
+    color: black;
     text-align: center;
     margin:auto;
     position: relative;
@@ -271,7 +271,7 @@ body{
 }
 
 .main-content{
-    width: 100%;
+    width: 100% fit-content;
     height: 100vh fit-content;
     box-sizing: border-box;
     background-color: rgb(62, 59, 59);
@@ -279,9 +279,22 @@ body{
     opacity: 0.8;
     border-radius: 10px;
     align-items: center;
-    color: white;
+    color: black;
     background-color: white;
     text-align: left;
+    overflow: hidden;
+}
+
+
+.main-content i:hover{
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.main-content li:hover{
+    cursor: pointer;
 }
 
 .main-content p{
@@ -306,7 +319,7 @@ body{
     text-align: left;
     background-color: inherit;
     border: none;
-    color: white;
+    color: black;
     top:0;
     font-weight: bold;
     font-size: 20px;
@@ -323,7 +336,7 @@ body{
     text-align: left;
     background-color: inherit;
     border: none;
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 20px;
     margin-left: 5px;
@@ -331,13 +344,15 @@ body{
 }
 
 
+
+
 .take-back-button:hover{
-    background-color: black;
+    background-color: rgb(59, 58, 58);
     cursor: pointer;
 }
 
 .home-button-display:hover{
-    background-color: black;
+    background-color: rgb(59, 58, 58);
     cursor: pointer;
 }
 
@@ -346,7 +361,7 @@ body{
 }
 
 .head h1{
-    color:white;
+    color:black;
     font-size: 30px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

@@ -2,11 +2,11 @@ const maintainLogs = require('../models/maintain')
 
 const save = async (req,res) =>{
     try{
-        const {title, content, time}= req.body;
+        const {title, content, time, date}= req.body;
 
         //Save the Data input from thse user to the database
         const log = await maintainLogs.create({
-            title, content, time
+            title, content, time, date
         })
 
         
