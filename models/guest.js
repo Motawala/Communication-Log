@@ -6,7 +6,8 @@ const guestLogs = new mongoose.Schema({
         type: String,
         required: true,
         maxlength: 32,
-        trim: true
+        trim: true,
+        unique: true
     },
     content:{
         type: String,

@@ -48,4 +48,30 @@ const displayGuest = async (req,res) =>{
         })
     }
 }
-module.exports = {saveGuest,displayGuest}
+
+
+
+const deleteGuest = async (req,res) =>{
+    try{
+        const {title} = req.body;
+
+        const note = await guestLogs.deleteOne({title})
+        if(note){
+            return res.status(200).json({
+                success: true,
+                message: "Note Deleted"
+            })
+        }else{
+            return res.status(400).json({
+                success:false,
+                message:"Note not Deleted."
+            })
+        }
+    }catch(err){
+        return res.status(400).json({
+            success:false,
+            message:"Error in deleting note."
+        })
+    }
+}
+module.exports = {saveGuest,displayGuest, deleteGuest}

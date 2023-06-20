@@ -3,7 +3,7 @@ const router = express.Router();
 const {login, signUp, reset, logout, getName} = require("../controllers/User")
 const {isAuth} = require('../middleware/isAuth')
 const {save, display} = require('../controllers/maintain')
-const {saveGuest, displayGuest} = require('../controllers/guest')
+const {saveGuest, displayGuest, deleteGuest} = require('../controllers/guest')
 const {saveHousekeep, displayHousekeep} = require('../controllers/housekeep')
 const {sendEmail} = require('../controllers/email')
 
@@ -25,6 +25,9 @@ router.post('/save', isAuth,save)
 
 //Send the Email for all the services
 router.post('/send-email', sendEmail)
+
+//Deletes a Note in Guest Log
+router.post('/deleteGuest', deleteGuest)
 
 //Displays the Maintanence Logs from the Database.
 router.get('/display', display)
