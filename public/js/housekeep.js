@@ -61,12 +61,11 @@ async function saveMessage(){
     save.innerHTML = "Information Saved"
 }
 
-//This function retrives the data from the database to display it on the screen
 async function Display(){
     try{
         const displayContent = document.getElementById('main-content')
-        var titleArray = []
-        var contentArray = []
+        var titleArray = [];
+        var contentArray = [];
         var deleteIconArray = []
         await fetch('/user/displayHousekeep')
         .then(response => response.json())
@@ -75,14 +74,14 @@ async function Display(){
                 const titleElement = document.createElement('li');
                 const contentElement = document.createElement('p');
                 const deleteIcon = document.createElement('i')
-                titleElement.style.color = "grey"
+                titleElement.style.color = "Black"
                 titleElement.innerHTML = record.title + " ------>  Time: " + record.time + ", Date: " + record.date
                 contentElement.innerHTML = record.content 
                 titleElement.style.fontSize = "20px"
                 titleElement.style.fontWeight ="bold"
                 titleElement.style.textDecoration = "underline"
-                titleElement.style.fontFamily = " Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
                 titleElement.style.marginBottom = "0"
+                titleElement.style.fontFamily = " Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
                 titleElement.style.padding = "0"
                 contentElement.style.margin = "0"
                 contentElement.style.padding = "0"
@@ -96,9 +95,9 @@ async function Display(){
             })
         })
 
-        const length = titleArray.length
+        var length = titleArray.length
         console.log(deleteIconArray)
-        for(let i=0; i<=length; i++){
+        for(let i=0;i<length;i++){
             displayContent.style.border = "2px solid black"
             displayContent.style.padding = "10px"
             displayContent.appendChild(deleteIconArray[i])
@@ -106,49 +105,49 @@ async function Display(){
             displayContent.appendChild(contentArray[i])
         }
 
-        //This function Deletes the Notes from the Database and the page
-        async function clickEvent(TitId){
-            const titleID = document.getElementById(TitId)
-            const title = titleID.id
-            if(confirm("Do you want to delete the note " + title + "?")){
-                
-                const result = await fetch("/user/deleteGuest",{
-                    method: 'POST',
-                    headers:{
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({title}),
-                })
-
-                if(result){
-                    displayContent.removeChild(titleID)
-                    console.log("Note Delete Successfully")
-                    location.reload()
-                }else{
-                    console.log("Error deleting the note")
-                }
-            }else{
-                console.log("note not removed")
-            }
-        }
-
         let i = 0
         const element = document.querySelectorAll('i');
         console.log(element.length)
-        Array.prototype.forEach.call(element, (item) =>{
-            
+        Array.prototype.forEach.call(element, (item) =>{            
             item.addEventListener('click', function() {
-                var name = item.className.slice(0, -12)
-                console.log(item)
+            var name = item.className.slice(0, -12)
                 clickEvent(name)
             })
-
             i = i + 1
         })
-        
+
+
 
     }catch(error){
         console.log(error)
+    }
+}
+
+
+ //This function Deletes the Notes from the Database and the page
+ async function clickEvent(TitId){
+    const displayContent = document.getElementById('main-content')
+    const titleID = document.getElementById(TitId)
+    const title = titleID.id
+    if(confirm("Do you want to delete the note " + title + "?")){
+        
+        const result = await fetch("/user/deleteHousekeep",{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({title}),
+        })
+
+        if(result){
+            displayContent.removeChild(titleID)
+            console.log("Note Delete Successfully")
+            location.reload()
+        }else{
+            console.log("Error deleting the note")
+        }
+    }else{
+        console.log("note not removed")
     }
 }
 

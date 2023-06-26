@@ -66,51 +66,95 @@ async function saveMessage(){
 }
 
 
-//This function makes a GET request to the server to retrive the data from the Database 
 async function Display(){
     try{
-
-        //Fetches the Data from the server and converts it into an array and then displays it 
         const displayContent = document.getElementById('main-content')
-        var titleArray = []
-        var contentArray = []
+        var titleArray = [];
+        var contentArray = [];
+        var deleteIconArray = []
         await fetch('/user/display')
         .then(response => response.json())
         .then(data =>{
             data.forEach(record => {
-               
                 const titleElement = document.createElement('li');
                 const contentElement = document.createElement('p');
-                titleElement.style.color = "black"
+                const deleteIcon = document.createElement('i')
+                titleElement.style.color = "Black"
                 titleElement.innerHTML = record.title + " ------>  Time: " + record.time + ", Date: " + record.date
                 contentElement.innerHTML = record.content 
                 titleElement.style.fontSize = "20px"
                 titleElement.style.fontWeight ="bold"
                 titleElement.style.textDecoration = "underline"
-                titleElement.style.fontFamily = " Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
                 titleElement.style.marginBottom = "0"
+                titleElement.style.fontFamily = " Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
                 titleElement.style.padding = "0"
                 contentElement.style.margin = "0"
                 contentElement.style.padding = "0"
                 contentElement.style.fontSize = "16px"
+                titleElement.id = record.title
+                deleteIcon.className = record.title
+                deleteIcon.classList.add('fa','fa-trash')
+                deleteIconArray.push(deleteIcon)
                 titleArray.push(titleElement)
                 contentArray.push(contentElement)
             })
         })
 
-        const length = titleArray.length
-        for(let i=0; i<=length; i++){
+        var length = titleArray.length
+        console.log(deleteIconArray)
+        for(let i=0;i<length;i++){
             displayContent.style.border = "2px solid black"
             displayContent.style.padding = "10px"
+            displayContent.appendChild(deleteIconArray[i])
             displayContent.appendChild(titleArray[i])
             displayContent.appendChild(contentArray[i])
         }
-        
+
+        let i = 0
+        const element = document.querySelectorAll('i');
+        console.log(element.length)
+        Array.prototype.forEach.call(element, (item) =>{            
+            item.addEventListener('click', function() {
+            var name = item.className.slice(0, -12)
+                clickEvent(name)
+            })
+            i = i + 1
+        })
+
+
+
     }catch(error){
         console.log(error)
     }
 }
 
+
+ //This function Deletes the Notes from the Database and the page
+ async function clickEvent(TitId){
+    const displayContent = document.getElementById('main-content')
+    const titleID = document.getElementById(TitId)
+    const title = titleID.id
+    if(confirm("Do you want to delete the note " + title + "?")){
+        
+        const result = await fetch("/user/deleteMaintain",{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({title}),
+        })
+
+        if(result){
+            displayContent.removeChild(titleID)
+            console.log("Note Delete Successfully")
+            location.reload()
+        }else{
+            console.log("Error deleting the note")
+        }
+    }else{
+        console.log("note not removed")
+    }
+}
 
 
 const takeBack = document.getElementById('take-back-button');

@@ -25,7 +25,8 @@ async function createAccount(){
     const firstname = document.getElementById('firstname-input').value;
     const lastname = document.getElementById('lastname-input').value;
     const username = document.getElementById('username-input').value;
-    const email = document.getElementById('email-input').value;
+    var email = document.getElementById('email-input').value;
+    email = email.toLowerCase();
     const password = document.getElementById('password-input').value;
     const repeatPassword = document.getElementById('repeat-password-input').value;
 

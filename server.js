@@ -15,6 +15,7 @@ const mongoDBsession = require('connect-mongodb-session')(session);
 //Import MongoClient and URI
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://kapatel:Kp2992002@cluster0.ygitbgz.mongodb.net/user";
+const http = require('http')
 
 
 //Store the session key in mongodb
@@ -55,10 +56,10 @@ app.get("/home", (req, res) => {
 app.engine('html', consolidate.swig)
 app.set('views', path.join(__dirname, './src'));
 app.set('view engine', 'html');
-
+const hostname = '0.0.0.0'
 
 // Listen on port 3000
-app.listen(3000, () => console.log("Application running on port 3000"));
+app.listen(3000, hostname, () => console.log("Application running on port 3000"));
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

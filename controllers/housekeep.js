@@ -48,4 +48,31 @@ const displayHousekeep = async (req,res) =>{
         })
     }
 }
-module.exports = {saveHousekeep,displayHousekeep}
+
+
+const deleteHousekeep = async (req,res) =>{
+    try{
+        const {title} = req.body;
+
+        const note = await housekeepLogs.deleteOne({title})
+        if(note){
+            return res.status(200).json({
+                success: true,
+                message: "Note Deleted"
+            })
+        }else{
+            return res.status(400).json({
+                success:false,
+                message:"Note not Deleted."
+            })
+        }
+    }catch(err){
+        return res.status(400).json({
+            success:false,
+            message:"Error in deleting note."
+        })
+    }
+}
+
+
+module.exports = {saveHousekeep,displayHousekeep, deleteHousekeep}

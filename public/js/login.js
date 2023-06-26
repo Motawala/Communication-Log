@@ -66,7 +66,8 @@ Login Function that Takes the Email and Password from the user and Authenticates
 */
 async function login(){
     //Gets the Email and Password from the User
-    const email = document.getElementById("username").value;
+    var email = document.getElementById("username").value;
+    email = email.toLowerCase();
     let password = document.getElementById("password").value;
     var firstname 
     //Makes a request to the database for authentication
@@ -122,7 +123,8 @@ if(RepeatPasswordInput){
 async function resetPassword(){
 
     const username = document.getElementById("username-forgot").value;
-    const email = document.getElementById("email-forgot").value;
+    var email = document.getElementById("email-forgot").value;
+    email = email.toLowerCase();
     const password = document.getElementById("new-password").value;
     const repeatPassword = document.getElementById("repeat-new-password").value;
 

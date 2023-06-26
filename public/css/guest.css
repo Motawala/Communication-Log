@@ -1,5 +1,5 @@
 body{
-    background-color: white;
+    background-color: green;
     padding:0;
     margin:0
 
@@ -103,7 +103,8 @@ body{
 
 .note-content{
     height:100vh;
-    width: 100%;
+    width: 100% fit-content;
+    min-height: 100%;
     border: 2px solid;
     border-radius: 5px;
     background-color: black;
@@ -257,8 +258,9 @@ body{
 /*Maintain Display Stylesheet*/
 
 .content-display{
-    width: 95%;
-    height: 100vh fit-content;
+    width: 95% fit-content;
+    height: 100vh;
+    min-height: 100%;
     background-color: rgb(204, 248, 204);
     opacity: 0.8;
     padding: 30px;
@@ -272,8 +274,8 @@ body{
 
 .main-content{
     width: 100% fit-content;
-    height: 100vh fit-content;
-    box-sizing: border-box;
+    height: 100vh;
+    min-height: 100%;
     background-color: rgb(62, 59, 59);
     padding:  50px;
     opacity: 0.8;
@@ -283,6 +285,7 @@ body{
     background-color: white;
     text-align: left;
     overflow: hidden;
+    border: 2px solid black;
 }
 
 
@@ -347,12 +350,12 @@ body{
 
 
 .take-back-button:hover{
-    background-color: rgb(59, 58, 58);
+    background-color: rgb(96, 96, 96);
     cursor: pointer;
 }
 
 .home-button-display:hover{
-    background-color: rgb(59, 58, 58);
+    background-color: rgb(96, 96, 96);
     cursor: pointer;
 }
 

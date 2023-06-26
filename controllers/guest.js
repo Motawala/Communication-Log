@@ -50,7 +50,7 @@ const displayGuest = async (req,res) =>{
 }
 
 
-
+//Deletes the Note using the title of the Note from the Housekeeping Notes
 const deleteGuest = async (req,res) =>{
     try{
         const {title} = req.body;
@@ -74,4 +74,6 @@ const deleteGuest = async (req,res) =>{
         })
     }
 }
+
+
 module.exports = {saveGuest,displayGuest, deleteGuest}

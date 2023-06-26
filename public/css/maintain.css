@@ -289,6 +289,18 @@ body{
     color: black;
 }
 
+.main-content i:hover{
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 2px;
+    color: black;
+    cursor: pointer;
+}
+
+.main-content i{
+    color: black;
+}
+
 .button-display{
     display: none;
     position: absolute;
