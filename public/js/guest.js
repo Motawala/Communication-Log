@@ -94,7 +94,7 @@ async function Display(){
         })
 
         var length = titleArray.length
-
+        console.log(deleteIconArray)
         for(let i=0;i<length;i++){
             displayContent.style.border = "2px solid black"
             displayContent.style.padding = "10px"
@@ -103,47 +103,49 @@ async function Display(){
             displayContent.appendChild(contentArray[i])
         }
 
-        //This function Deletes the Notes from the Database and the page
-        async function clickEvent(id){
-            const titleID = document.getElementById(id)
-            const title = titleID.id
-            if(confirm("Do you want to delete the note " + title + "?")){
-                
-                const result = await fetch("/user/deleteGuest",{
-                    method: 'POST',
-                    headers:{
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({title}),
-                })
-
-                if(result){
-                    displayContent.removeChild(titleID)
-                    console.log("Note Delete Successfully")
-                    location.reload()
-                }else{
-                    console.log("Error deleting the note")
-                }
-            }else{
-                console.log("note not removed")
-            }
-        }
-
         let i = 0
         const element = document.querySelectorAll('i');
         console.log(element.length)
-        Array.prototype.forEach.call(element, (item) =>{
-            
+        Array.prototype.forEach.call(element, (item) =>{            
             item.addEventListener('click', function() {
-                var name = item.className.slice(0, -12)
+            var name = item.className.slice(0, -12)
                 clickEvent(name)
             })
-
             i = i + 1
         })
 
+
+
     }catch(error){
         console.log(error)
+    }
+}
+
+
+ //This function Deletes the Notes from the Database and the page
+ async function clickEvent(TitId){
+    const displayContent = document.getElementById('main-content')
+    const titleID = document.getElementById(TitId)
+    const title = titleID.id
+    if(confirm("Do you want to delete the note " + title + "?")){
+        
+        const result = await fetch("/user/deleteGuest",{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({title}),
+        })
+
+        if(result){
+            displayContent.removeChild(titleID)
+            console.log("Note Delete Successfully")
+            location.reload()
+        }else{
+            console.log("Error deleting the note")
+        }
+    }else{
+        console.log("note not removed")
     }
 }
 
