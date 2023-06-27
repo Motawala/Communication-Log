@@ -7,7 +7,7 @@ const sendEmail = async (req,res) =>{
     try{
         const {message} = req.body;
 
-        
+        //This function sends email from the server using the content from the front end
         await sendGrid.send(message)
             .then(() =>{
                 console.log("Email Sent")

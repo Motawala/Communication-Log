@@ -6,12 +6,13 @@ window.addEventListener('load',function(event){
     Display()
 })
 
-
+//Event Listner for the Home button on Log page
 const homeButton = document.getElementById('home-button-display')
 if(homeButton){
     homeButton.addEventListener('click', redirec_to_Dashboard)
 }
 
+//Event listner for heading on log page
 const heading = document.getElementById('heading');
 if(heading){
     heading.addEventListener('click', function(){
@@ -26,12 +27,20 @@ async function initTinyMCE(){
       });
 }
 
+//Event Listner for the Save button on the log page
 const save = document.getElementById('save-button');
 if(save){
     save.addEventListener('click',saveContent)
 }
 
-
+/*
+    This function Saves the content input from the user to the database.
+    Makes a POST request to /user/saveGuest to save the content.
+    Params: title-Title of the Note
+            Content-Content of the Note
+            time-Time the Note is saved
+            date- Date the Note is saved
+*/
 //This function makes a post request to the server to save the data to the database.
 async function saveContent(){
     const content = tinymce.get('note-content').getContent();
@@ -65,13 +74,19 @@ async function saveMessage(){
     save.innerHTML = "Information Saved"
 }
 
-
+/*
+    This Function Displays the Notes from the Database to the user interface
+    creates title, content and Delete elements for the user display
+    retrives the content from the database using the server.
+    GET Request /user/diaplayGuest
+*/
 async function Display(){
     try{
+        //main container to display the content
         const displayContent = document.getElementById('main-content')
-        var titleArray = [];
-        var contentArray = [];
-        var deleteIconArray = []
+        var titleArray = [];                        //Array to store the title elements
+        var contentArray = [];                      //Array to store the content elements
+        var deleteIconArray = []                    //Array to store the icons
         await fetch('/user/display')
         .then(response => response.json())
         .then(data =>{
@@ -101,7 +116,8 @@ async function Display(){
         })
 
         var length = titleArray.length
-        console.log(deleteIconArray)
+
+        //Appends all the elements to the main container
         for(let i=0;i<length;i++){
             displayContent.style.border = "2px solid black"
             displayContent.style.padding = "10px"
@@ -110,9 +126,10 @@ async function Display(){
             displayContent.appendChild(contentArray[i])
         }
 
+
+        //Event Listner, if the user clicks on the delete icon
         let i = 0
         const element = document.querySelectorAll('i');
-        console.log(element.length)
         Array.prototype.forEach.call(element, (item) =>{            
             item.addEventListener('click', function() {
             var name = item.className.slice(0, -12)
@@ -156,17 +173,18 @@ async function Display(){
     }
 }
 
-
+//Event listener to redirect to dashboard on the display page
 const takeBack = document.getElementById('take-back-button');
 if(takeBack){
     takeBack.addEventListener('click',takeBackFunc)
 }
 
+//Function redirects the user to the log page
 async function takeBackFunc(){
     window.location.href = '/user/dashboard/maintain'
 }
 
-
+//Funciton redirects the user to the dashboard
 async function redirec_to_Dashboard(){
     window.location.href = "/user/dashboard"
 }
@@ -177,7 +195,7 @@ async function redirec_to_Dashboard(){
 async function email(){
     const to = "karanp3898@gmail.com"               //Receiptant
     const from = "pkaran1100@gmail.com"             //Sender
-    const subject = "Test Email From Mota"          //Subject of the email
+    const subject = "Maintenance Issues"          //Subject of the email
     let messageText = ""                            //Message 
 
     //Save the content from the Database to the Array

@@ -30,9 +30,8 @@ h1{
     background-color: black;
     box-shadow: 5px 5px 10px #80e4e4;
     padding: 70px 30px;
-    opacity: 0.8;
+    opacity: 0.6;
     border-radius: 10px;
-    opacity: 0.5;
 }
 
 .header a{

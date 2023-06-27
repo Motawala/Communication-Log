@@ -256,8 +256,8 @@ body{
 /*Maintain Display stylesheet*/
 
 .content-display{
-    width: 95%;
-    height: 100vh fit-content;
+    width: 95% fit-content;
+    height: 100vh;
     background-color: rgb(62, 59, 59);
     opacity: 0.8;
     padding: 30px;
@@ -270,8 +270,8 @@ body{
 }
 
 .main-content{
-    width: 100%;
-    height: 100vh fit-content;
+    width: 100% fit-content;
+    height: 100vh;
     box-sizing: border-box;
     background-color: rgb(62, 59, 59);
     padding:  50px;
@@ -281,6 +281,7 @@ body{
     color: white;
     background-color: white;
     text-align: left;
+    border: 2px groove black;
 }
 
 .main-content p{

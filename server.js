@@ -32,7 +32,7 @@ app.use(session({
   saveUninitialized: true,
   store: store,
   cookie: {
-    maxAge: 60 * 60 * 1000, // Set the session age to 60 seconds (in milliseconds)
+    maxAge: 2 * 60 * 60 * 1000, // Set the session age to 2 hours (in milliseconds)
   },
 }))
 

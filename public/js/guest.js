@@ -26,6 +26,15 @@ if(save){
     save.addEventListener('click',saveContent)
 }
 
+
+/*
+    This function Saves the content input from the user to the database.
+    Makes a POST request to /user/saveGuest to save the content.
+    Params: title-Title of the Note
+            Content-Content of the Note
+            time-Time the Note is saved
+            date- Date the Note is saved
+*/
 async function saveContent(){
     const content = tinymce.get('note-content').getContent();
     const title = document.getElementById('note-title').value;
@@ -39,12 +48,13 @@ async function saveContent(){
             headers:{
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({title, content, time, date}),
+            body: JSON.stringify({title, content, time, date}), //Params requested by the server
         })
 
+        //If the data is saved indicate the user on screen
         if(response){
             console.log("Data Saved")
-            saveMessage();
+            saveMessage()
         }else{
             console.log("Error in saving the data")
         }
@@ -53,22 +63,30 @@ async function saveContent(){
     }
 }
 
+/*This function display the message on the screen when the save request is successful to indicate the user
+that the note is saved */
 async function saveMessage(){
     const save = document.getElementById('saved-message');
-    save.innerHTML = "Inforamtion Saved"
+    save.innerHTML = "Note Saved"
 }
 
-
+/*
+    This Function Displays the Notes from the Database to the user interface
+    creates title, content and Delete elements for the user display
+    retrives the content from the database using the server.
+    GET Request /user/diaplayGuest
+*/
 async function Display(){
     try{
+        //Container to display the content
         const displayContent = document.getElementById('main-content')
-        var titleArray = [];
-        var contentArray = [];
-        var deleteIconArray = []
-        await fetch('/user/displayGuest')
-        .then(response => response.json())
-        .then(data =>{
-            data.forEach(record => {
+        var titleArray = [];                    //Array to store all the title elements
+        var contentArray = [];                  //Array to store all the content elements
+        var deleteIconArray = []                //Array to store all the icons
+        await fetch('/user/displayGuest')       //GET request being made    
+        .then(response => response.json())      //Parsing the response from the server to JSON
+        .then(data =>{      
+            data.forEach(record => {            //Storing the data into an array Record
                 const titleElement = document.createElement('li');
                 const contentElement = document.createElement('p');
                 const deleteIcon = document.createElement('i')
@@ -79,22 +97,24 @@ async function Display(){
                 titleElement.style.fontWeight ="bold"
                 titleElement.style.textDecoration = "underline"
                 titleElement.style.marginBottom = "0"
-                titleElement.style.fontFamily = " Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+                titleElement.style.fontFamily = "Trebuchet MS"
                 titleElement.style.padding = "0"
                 contentElement.style.margin = "0"
                 contentElement.style.padding = "0"
                 contentElement.style.fontSize = "16px"
+                contentElement.style.fontFamily = 'Trebuchet MS'
                 titleElement.id = record.title
-                deleteIcon.className = record.title
+                deleteIcon.className = record.title                 //Assigning the Delete Icon with the class name
                 deleteIcon.classList.add('fa','fa-trash')
-                deleteIconArray.push(deleteIcon)
-                titleArray.push(titleElement)
+                deleteIconArray.push(deleteIcon)                    //Storing all the dynamic elements to an array
+                titleArray.push(titleElement)   
                 contentArray.push(contentElement)
             })
         })
 
         var length = titleArray.length
-        console.log(deleteIconArray)
+
+        //Appends all the elements created to the main container
         for(let i=0;i<length;i++){
             displayContent.style.border = "2px solid black"
             displayContent.style.padding = "10px"
@@ -103,9 +123,9 @@ async function Display(){
             displayContent.appendChild(contentArray[i])
         }
 
+        //Event Listner, if the user clicks on the delete Icon to delete a specific note
         let i = 0
         const element = document.querySelectorAll('i');
-        console.log(element.length)
         Array.prototype.forEach.call(element, (item) =>{            
             item.addEventListener('click', function() {
             var name = item.className.slice(0, -12)
@@ -178,7 +198,7 @@ async function takeBackFunc(){
 async function email(){
     const to = "karanp3898@gmail.com"
     const from = "pkaran1100@gmail.com"
-    const subject = "Test Email From Mota"
+    const subject = "GUEST"
     let messageText = ""
 
     //Save the content from the Database to the Array
@@ -251,6 +271,6 @@ function performActionAtTime(timeInMilliseconds) {
   }
   
 
-const delay = 24 * 60 * 60 * 1000; // 3 seconds
+const delay = 24 * 60 * 60 * 1000; // 1 Day
 //performActionAtTime(delay);
   

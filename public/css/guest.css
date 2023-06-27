@@ -107,16 +107,13 @@ body{
     min-height: 100%;
     border: 2px solid;
     border-radius: 5px;
-    background-color: black;
     color: aliceblue;
     font-size: 17px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius:5px;
 }
 
-.content{
-    margin-top:40px;
-}
+
 
 .nav-bar{
     float:left;
