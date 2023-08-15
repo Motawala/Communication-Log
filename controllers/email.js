@@ -1,6 +1,6 @@
 const sendGrid = require('@sendgrid/mail');
 //Sets the API
-sendGrid.setApiKey("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")
+sendGrid.setApiKey("<API>")
 
 //This funciton send the Email using the SendGrid API
 const sendEmail = async (req,res) =>{
